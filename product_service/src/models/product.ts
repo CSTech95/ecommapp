@@ -9,8 +9,29 @@ export class Product {
 	title: string | undefined;
 
 	@Column({ type: "varchar" })
+	description: string | undefined;
+
+	@Column({ type: "varchar" })
 	price: string | undefined;
 
 	@Column({ type: "varchar" })
-	rating: string | undefined;
+	discountedPercentage: string | undefined;
+
+	@Column({ type: "varchar" })
+	rating: number | undefined;
+
+	@Column({ type: "varchar" })
+	stock: Boolean | undefined;
+
+	@Column({ type: "varchar" })
+	brand: string | undefined;
+
+	@Column({ type: "varchar" })
+	category: string | undefined;
+
+	@Column({ type: "varchar" })
+	thumbnail: string | undefined;
+
+	@Column({ type: "varchar" })
+	images: string | string[] | undefined;
 }
