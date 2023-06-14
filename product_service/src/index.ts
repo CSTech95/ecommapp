@@ -1,6 +1,6 @@
 import { app } from "./app";
 import "reflect-metadata";
-import { DataSource } from "typeorm";
+import { DataSource, QueryRunner } from "typeorm";
 import { Product } from "./models/product";
 
 //TODO Connect to PostgreSQL DB with TypeORM
@@ -21,12 +21,18 @@ export const AppDataSource = new DataSource({
 //	const products = await productRepository.find();
 //	console.log(products);
 //};
+
 AppDataSource.initialize()
 	.then(() => {
 		console.log("DataSource Initialized");
 		//getProducts();
 	})
 	.catch((err) => console.log(err));
+//async () => {
+//	const queryRunner = await AppDataSource.createQueryRunner();
+//	var result = await queryRunner.manager.query(`SELECT * FROM products`);
+//	await console.log(result);
+//};
 
 const start = async () => {
 	app.listen(3000, () => {
