@@ -1,7 +1,8 @@
 import { app } from "./app";
-import "reflect-metadata";
+//import "reflect-metadata";
 import { DataSource, QueryRunner } from "typeorm";
 import { Product } from "./models/product";
+//import {Product} from "@adecomm/common/";
 
 //TODO Connect to PostgreSQL DB with TypeORM
 export const AppDataSource = new DataSource({

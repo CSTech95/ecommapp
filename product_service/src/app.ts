@@ -1,6 +1,6 @@
 require("dotenv").config();
-import express, { Request, Response } from "express";
 import "reflect-metadata";
+import express, { Request, Response } from "express";
 //import "express-async-errors";
 //Import JSON from body-parser
 import { json } from "body-parser";
