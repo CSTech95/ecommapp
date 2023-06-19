@@ -3,7 +3,8 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Product {
 	@PrimaryGeneratedColumn({ type: "int" })
-	id: number | undefined | string;
+	@PrimaryGeneratedColumn("uuid")
+	id: string | undefined;
 
 	@Column({ type: "varchar" })
 	title: string | undefined;
