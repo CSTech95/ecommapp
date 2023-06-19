@@ -1,6 +1,9 @@
 # ecommapp
 [EcommerceApp.drawio.pdf](https://github.com/CSTech95/ecommapp/files/11729696/EcommerceApp.drawio.pdf)
 
+[high-level-ecommapp-design.pdf](https://github.com/CSTech95/ecommapp/files/11790572/high-level-ecommapp-design.pdf)
+
+
 <img width="1440" alt="Screenshot 2023-06-12 at 9 31 16 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/c7fb63f1-87a7-4983-9119-cf818c1647b7">
 
 <img width="1440" alt="Screenshot 2023-06-12 at 9 31 32 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/20c9e6d1-c272-4f0b-b936-fce1ba5b8192">
