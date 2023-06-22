@@ -7,6 +7,7 @@ import cookiesession from "cookie-session";
 //import { signinRouter } from "./routes/signin";
 //import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
+import { getAllUsersRouter } from "./routes/get-users";
 const app = express();
 
 app.set("trust-proxy", true);
@@ -23,6 +24,7 @@ app.use(
 //app.use(signinRouter);
 //app.use(signoutRouter);
 app.use(signupRouter);
+app.use(getAllUsersRouter);
 
 app.all("*", async (req: Request, res: Response) => {
 	//throw new NotFoundError
