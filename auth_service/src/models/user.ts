@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { IsEmail, Contains } from "class-validator";
 
 @Entity()
 export class User {
@@ -9,6 +10,8 @@ export class User {
 	fName: string | undefined;
 
 	@Column({ type: "varchar", nullable: false })
+	@IsEmail() // TODO Research this, it allows non-email input for some reason
+	@Contains("@") // This shouldn't be necessary I'm assuming due to the above @IsEmail annotation
 	email: string | undefined;
 
 	@Column({ type: "varchar", nullable: false })
