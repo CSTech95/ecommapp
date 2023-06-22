@@ -3,16 +3,40 @@
 
 ![high-level-ecommapp-design](https://github.com/CSTech95/ecommapp/assets/16457234/8ce94416-c1eb-474e-b314-7e2371d08e3b)
 
-<img width="1440" alt="Screenshot 2023-06-12 at 9 31 16 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/c7fb63f1-87a7-4983-9119-cf818c1647b7">
 
-<img width="1440" alt="Screenshot 2023-06-12 at 9 31 32 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/20c9e6d1-c272-4f0b-b936-fce1ba5b8192">
+Passwords are hashed in case the database gets compromised
+<img width="2560" alt="Screenshot 2023-06-21 at 9 29 40 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/917724df-e9b6-42a8-b2be-f6e7d42cb0fa">
 
-<img width="1440" alt="Screenshot 2023-06-12 at 9 31 42 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/d61ba9b7-f11f-46a0-8413-e71adabf7cf8">
 
-<img width="1440" alt="Screenshot 2023-06-12 at 9 32 41 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/ec2d9170-0809-4a09-a213-8aa9f08f4f4a">
+Currently only 2 products in the product service's database
+<img width="2560" alt="Screenshot 2023-06-21 at 9 32 22 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/bf1e42da-891b-4372-b9e5-76e58a306d12">
 
-<img width="1440" alt="Screenshot 2023-06-12 at 9 32 52 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/6c68813d-87ae-49fb-85e5-c9437dc97ec1">
 
-<img width="1440" alt="Screenshot 2023-06-12 at 9 34 42 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/9ae9b6fa-98b7-4803-96a5-14a7ad2a969f">
+Let's query a single product
+<img width="2560" alt="Screenshot 2023-06-21 at 9 34 01 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/1c9e2516-87ed-4ea5-b2a5-7c4f512106f7">
 
-<img width="1440" alt="Screenshot 2023-06-12 at 9 34 49 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/cc5805e8-193c-4271-bf2e-fe78e28696ee">
+
+Creating a product
+<img width="2560" alt="Screenshot 2023-06-21 at 9 36 40 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/494f327f-2e1f-4a2c-9c4c-eb692ac890a9">
+
+
+Product is in AWS PostgreSQL DB
+<img width="2560" alt="Screenshot 2023-06-21 at 9 37 11 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/03607ab6-6c16-481d-ad27-ae912a470b7e">
+
+
+Updating a product
+<img width="2560" alt="Screenshot 2023-06-21 at 9 39 09 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/ddbe8ac2-2cbf-4abc-9191-f68dd464f01c">
+
+Product is updated
+<img width="2560" alt="Screenshot 2023-06-21 at 9 39 39 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/2c7dd2a8-8bae-4266-b85a-e565075e2911">
+
+Let's delete our comftorable couch
+<img width="2560" alt="Screenshot 2023-06-21 at 9 40 50 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/31214f20-9b85-496a-bb7a-c251fa3c1724">
+
+Au Revoir comftorable couch
+<img width="2560" alt="Screenshot 2023-06-21 at 9 41 00 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/6ef770df-0c79-4a2f-b0b5-261e8b42805f">
+
+
+
+
+
