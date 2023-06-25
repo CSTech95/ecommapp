@@ -6,38 +6,52 @@ PDF needs to be updated. Specifically on the database design & RabbitMQ Integrat
 
 
 Passwords are hashed in case the database gets compromised
-<img width="2560" alt="Screenshot 2023-06-21 at 9 29 40 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/917724df-e9b6-42a8-b2be-f6e7d42cb0fa">
+<img width="1920" alt="Screenshot 2023-06-21 at 10 13 43 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/fc8b8440-f654-4d3c-9be4-fb33282cbf2b">
 
 
-Currently only 2 products in the product service's database
-<img width="2560" alt="Screenshot 2023-06-21 at 9 32 22 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/bf1e42da-891b-4372-b9e5-76e58a306d12">
+
+Currently only 2 products are in the product service's database
+<img width="1920" alt="Screenshot 2023-06-21 at 10 14 58 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/b8b7ae36-c1d5-4a78-972a-d085084a6a1d">
 
 
-Let's query a single product
-<img width="2560" alt="Screenshot 2023-06-21 at 9 34 01 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/1c9e2516-87ed-4ea5-b2a5-7c4f512106f7">
+Let's query a single product by 'ID'. I'll view the mountain bike.
+<img width="1920" alt="Screenshot 2023-06-21 at 10 16 18 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/f5263ad5-bdc1-4fdd-95a2-7a14a790c4e2">
 
 
 Creating a product
-<img width="2560" alt="Screenshot 2023-06-21 at 9 36 40 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/494f327f-2e1f-4a2c-9c4c-eb692ac890a9">
+<img width="1920" alt="Screenshot 2023-06-21 at 10 20 06 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/3b81c29b-372f-4a21-89f8-48fa4b4b837d">
+
 
 
 Product is in AWS PostgreSQL DB
-<img width="2560" alt="Screenshot 2023-06-21 at 9 37 11 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/03607ab6-6c16-481d-ad27-ae912a470b7e">
+<img width="1920" alt="Screenshot 2023-06-21 at 10 20 37 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/85a4c9ff-f3c2-456f-b5f2-2b182c3b669d">
+<img width="1280" alt="Screenshot 2023-06-21 at 10 21 56 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/ee760d83-8106-48eb-83ad-a4d4dab73441">
+<img width="1280" alt="Screenshot 2023-06-21 at 10 25 31 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/c33e55ef-5991-4a8f-954d-9e2ad4e82c58">
+<img width="1280" alt="Screenshot 2023-06-21 at 10 26 47 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/0cd5c8b7-e812-413f-b3d8-f0dee4d05aa8">
 
 
-Updating a product
-<img width="2560" alt="Screenshot 2023-06-21 at 9 39 09 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/ddbe8ac2-2cbf-4abc-9191-f68dd464f01c">
+
+
+
+Lets update the mountain bike's description from 5 gears to 12, increase the price from $250 to $800 and lower the discountedPercentage from 2 to 1  
+...No need to include values for unchanged key-value pairs
+<img width="1920" alt="Screenshot 2023-06-21 at 10 34 53 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/1f64461e-9a25-48b4-891e-f69f2216373f">
+
 
 Product is updated
-<img width="2560" alt="Screenshot 2023-06-21 at 9 39 39 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/2c7dd2a8-8bae-4266-b85a-e565075e2911">
-
-Let's delete our comftorable couch
-<img width="2560" alt="Screenshot 2023-06-21 at 9 40 50 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/31214f20-9b85-496a-bb7a-c251fa3c1724">
-
-Au Revoir comftorable couch
-<img width="2560" alt="Screenshot 2023-06-21 at 9 41 00 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/6ef770df-0c79-4a2f-b0b5-261e8b42805f">
+<img width="1920" alt="Screenshot 2023-06-21 at 10 37 32 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/c511fb0f-499d-46a1-bf64-befdcddf36aa">
 
 
+
+Let's delete our 8k TV
+<img width="1920" alt="Screenshot 2023-06-21 at 10 40 57 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/8865742e-261d-4dd4-8b31-11cfbb3a877c">
+
+
+Au Revoir 8k TV
+<img width="1920" alt="Screenshot 2023-06-21 at 10 41 21 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/e84c8fde-77b9-4593-bd5a-a246d3c539c6">
+
+
+Time response can be faster with caching. Redis is standard for caching. The Time to make these requests are typically over 299ms. We can cache these results and drastically reduce the time to retrieve information. This is great if we need information repeatedly. When we first request data, it may take over 299ms to receive it. But once we want to access it again, that time latency will drastically be reduced.
 
 
 
