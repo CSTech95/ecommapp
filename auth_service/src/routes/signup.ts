@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 //import { body } from "express-validator";
+import { validate } from "class-validator";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { AppDataSource } from "../../src/index";
@@ -34,9 +35,14 @@ router.post(
 		user.zip = zip;
 		user.createdAt = Date.now();
 
-		const userRepository = AppDataSource.getRepository(User);
-		await userRepository.save(user);
-		res.status(201).send(user);
+		const errors = await validate(user);
+		if (errors.length > 0) {
+			throw new Error(`Validation failed!`);
+		} else {
+			const userRepository = AppDataSource.getRepository(User);
+			await userRepository.save(user);
+			res.status(201).send(user);
+		}
 
 		// Generate JWT
 		//const userJwt = jwt.sign(
