@@ -9,7 +9,7 @@ import cookiesession from "cookie-session";
 //import Routes
 import { createProductRouter } from "./routes/createProduct";
 import { deleteProductRouter } from "./routes/deleteProduct";
-import { getAllProductsRouter } from "./routes/index";
+import { getAllProductsRouter } from "./routes/getAllProducts";
 import { getProductRouter } from "./routes/getProduct";
 import { updateProductRouter } from "./routes/updateProduct";
 

@@ -30,10 +30,12 @@ router.post(
 		user.lName = lName;
 		user.email = email;
 		user.password = hashedPassword;
-		user.address = address;
-		user.state = state;
-		user.zip = zip;
-		user.createdAt = Date.now();
+		user.otherInfo = {
+			address,
+			state,
+			zip,
+			createdAt: Date.now(),
+		};
 
 		const errors = await validate(user);
 		if (errors.length > 0) {
@@ -58,7 +60,7 @@ router.post(
 		//	jwt: userJwt,
 		//};
 
-		res.status(201).send(user);
+		//res.status(201).send(user);
 	}
 );
 
