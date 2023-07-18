@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 import { IsEmail, Contains } from "class-validator";
 
-@Entity()
+@Entity({ name: "user" })
 export class User {
 	@PrimaryGeneratedColumn({ type: "int" })
 	id: number | undefined | string;
@@ -9,26 +9,26 @@ export class User {
 	@Column({ type: "varchar" })
 	fName: string | undefined;
 
+	@Column({ type: "varchar" })
+	lName: string | undefined;
+
 	@Column({ type: "varchar", nullable: false })
-	@IsEmail() // TODO Research this, it allows non-email input for some reason
+	@IsEmail()
 	@Contains("@") // This shouldn't be necessary I'm assuming due to the above @IsEmail annotation
 	email: string | undefined;
 
 	@Column({ type: "varchar", nullable: false })
 	password: string | undefined;
 
-	@Column({ type: "varchar" })
-	lName: string | undefined;
+	// Column with JSON data type
+	@Column("simple-json", { nullable: true })
+	otherInfo!: {
+		createdAt: number | undefined | string;
 
-	@Column({ type: "varchar" })
-	createdAt: number | undefined | string;
+		address: string | undefined | any;
 
-	@Column({ type: "varchar" })
-	address: string | undefined;
+		state: string | undefined;
 
-	@Column({ type: "varchar" })
-	state: string | undefined;
-
-	@Column({ type: "integer" })
-	zip: string | undefined;
+		zip: string | undefined;
+	};
 }
