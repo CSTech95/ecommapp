@@ -9,7 +9,7 @@ import cookiesession from "cookie-session";
 import { signupRouter } from "./routes/signup";
 import { getAllUsersRouter } from "./routes/get-users";
 const app = express();
-
+// Test, delete
 app.set("trust-proxy", true);
 app.use(json());
 app.use(
