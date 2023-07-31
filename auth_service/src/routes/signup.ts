@@ -43,24 +43,25 @@ router.post(
 		} else {
 			const userRepository = AppDataSource.getRepository(User);
 			await userRepository.save(user);
+
+			// Generate JWT
+			const userJwt = jwt.sign(
+				{
+					id: user.id,
+					email: user.email,
+					fName: user.fName,
+					lName: user.lName,
+				},
+				//process.env.JWT_KEY!
+				"tinker"
+			);
+
+			req.session = {
+				jwt: userJwt,
+			};
+
 			res.status(201).send(user);
 		}
-
-		// Generate JWT
-		//const userJwt = jwt.sign(
-		//	{
-		//		id: user.id,
-		//		email: user.email,
-		//	},
-		//	process.env.JWT_KEY!
-		//);
-
-		//// Store it on session object
-		//req.session = {
-		//	jwt: userJwt,
-		//};
-
-		//res.status(201).send(user);
 	}
 );
 
