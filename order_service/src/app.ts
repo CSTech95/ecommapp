@@ -5,28 +5,30 @@ import express, { Request, Response } from "express";
 import { json } from "body-parser";
 //Import cookieSession from cookie-session
 import cookiesession from "cookie-session";
+import { createOrderRouter } from "./routes/createOrder";
+import { getAllOrdersRouter } from "./routes/getAllOrders";
 //import Routes
 
 const app = express();
 
 app.set("trust-proxy", true);
-//app.use(json())
-app.use(
-	cookiesession({
-		signed: false,
-		secure: process.env.NODE_ENV != "test",
-	})
-);
+app.use(json());
+//app.use(
+//	cookiesession({
+//		signed: false,
+//		secure: process.env.NODE_ENV != "test",
+//	})
+//);
 
 //TODO Add middleware for if a user is currently logged in
 //app.use(currentUser)
 
 //TODO input middleware param in method
-app.use();
-app.use();
-app.use();
-app.use();
-app.use();
+app.use(createOrderRouter);
+app.use(getAllOrdersRouter);
+//app.use();
+//app.use();
+//app.use();
 
 app.all("*", async (req: Request, res: Response) => {
 	//throw new NotFoundError

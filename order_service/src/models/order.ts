@@ -6,16 +6,20 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Order {
 	@PrimaryGeneratedColumn("uuid")
-	id: string;
+	id: string | undefined;
+
+	//@Column({ type: "varchar" })
+	//productId: number | undefined | string;
+
+	@Column("jsonb")
+	//TODO Add interface for product value
+	products: string[] | undefined | string;
+
+	//@Column({ type: "varchar" })
+	//userId: number | undefined | string;
 
 	@Column({ type: "varchar" })
-	productId: number | undefined | string;
-
-	@Column({ type: "varchar" })
-	userId: number | undefined | string;
-
-	@Column({ type: "varchar" })
-	shoppingCartId: number | undefined | string;
+	totalFee: number | undefined | string;
 
 	@Column({ type: "varchar" })
 	createdAt: number | undefined | string;
