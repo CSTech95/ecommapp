@@ -1,10 +1,41 @@
+import { Order } from "./models/order";
 import { app } from "./app";
+import "reflect-metadata";
+import { DataSource } from "typeorm";
 
 //TODO Connect to PostgreSQL DB with TypeORM
+export const AppDataSource = new DataSource({
+	type: "postgres",
+	host: "product.cnulqnh5pzex.us-east-1.rds.amazonaws.com",
+	port: 5432,
+	username: "postgres",
+	password: "Bridgeportin2",
+	//database: "",
+	entities: [Order],
+	synchronize: true,
+	logging: false,
+});
+const getOrders = async () => {
+	const orderRepository = AppDataSource.getRepository(Order);
+	const orders = await orderRepository.find();
+	console.log(orders);
+};
+
+AppDataSource.initialize()
+	.then(async () => {
+		console.log("DataSource is Initialized");
+		getOrders();
+	})
+	.catch((err) => console.log(err));
+//async () => {
+//	const queryRunner = await AppDataSource.createQueryRunner();
+//	var result = await queryRunner.manager.query(`SELECT * FROM products`);
+//	await console.log(result);
+//};
 
 const start = async () => {
-	app.listen(3000, () => {
-		console.log("listening on port 3000");
+	app.listen(3130, () => {
+		console.log("listening on port 3130");
 	});
 };
 
