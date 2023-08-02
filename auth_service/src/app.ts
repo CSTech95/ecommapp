@@ -3,7 +3,7 @@ import express, { Request, Response } from "express";
 import "express-async-errors";
 import { json } from "body-parser";
 import cookiesession from "cookie-session";
-//import { currentUserRouter } from "./routes/current-user";
+import { currentUserRouter } from "./routes/current-user";
 import { signInRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
@@ -20,7 +20,7 @@ app.use(
 	})
 );
 
-//app.use(currentUserRouter);
+app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
