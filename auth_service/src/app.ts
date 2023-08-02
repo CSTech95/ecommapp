@@ -4,12 +4,12 @@ import "express-async-errors";
 import { json } from "body-parser";
 import cookiesession from "cookie-session";
 //import { currentUserRouter } from "./routes/current-user";
-//import { signinRouter } from "./routes/signin";
+import { signInRouter } from "./routes/signin";
 //import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
 import { getAllUsersRouter } from "./routes/get-users";
 const app = express();
-// Test, delete
+
 app.set("trust-proxy", true);
 app.use(json());
 app.use(
@@ -21,7 +21,7 @@ app.use(
 );
 
 //app.use(currentUserRouter);
-//app.use(signinRouter);
+app.use(signInRouter);
 //app.use(signoutRouter);
 app.use(signupRouter);
 app.use(getAllUsersRouter);
