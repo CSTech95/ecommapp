@@ -10,14 +10,14 @@ import { Password } from "../services/password";
 import { User } from "../models/user";
 
 const router = express.Router();
-
-router.post("/api/users/signIn", async (req: Request, res: Response) => {
+//TODO :: Error Handling
+router.post("/api/users/signin", async (req: Request, res: Response) => {
 	const { email, password } = req.body;
 
 	const existingUser = await AppDataSource.getRepository(User).findOneBy({
-		email: req.body.email,
+		email,
 	});
-	let enteredPassword = await req.body.password;
+	let enteredPassword = await password;
 
 	async function isPassword(password: Buffer) {
 		const match = await bcrypt.compare(enteredPassword, existingUser!.password!);
@@ -33,22 +33,27 @@ router.post("/api/users/signIn", async (req: Request, res: Response) => {
 		//const isPasswordTrue = await bcrypt.compare(enteredPassword, existingUser.password!);
 		//const isPasswordTrue = await bcrypt.compare(enteredPassword, existingUser.password!);
 		//throw new BadRequestError("Invalid credentials");
-
+		//let address = existingUser.otherInfo.address; // Delete
+		//let state = existingUser.otherInfo.state; //Delete
 		// Generate JWT
-		//const userJwt = jwt.sign(
-		//	{
-		//		id: user.id,
-		//		email: user.email,
-		//		fName: user.fName,
-		//		lName: user.lName,
-		//	},
-		//	//process.env.JWT_KEY!
-		//	"tinker"
-		//);
+		const userJwt = jwt.sign(
+			{
+				id: existingUser.id,
+				email: existingUser.email,
+				fName: existingUser.fName,
+				lName: existingUser.lName,
+				otherInfo: {
+					address: existingUser.otherInfo.address,
+					state: existingUser.otherInfo.state,
+				},
+			},
+			//process.env.JWT_KEY!
+			"tinker"
+		);
 
-		//req.session = {
-		//	jwt: userJwt,
-		//};
+		req.session = {
+			jwt: userJwt,
+		};
 
 		res.status(201).send(existingUser);
 	} else {
@@ -60,20 +65,6 @@ router.post("/api/users/signIn", async (req: Request, res: Response) => {
 	//if (!passwordsMatch) {
 	//	//throw new BadRequestError("Invalid Credentials");
 	//}
-
-	// Generate JWT
-	//const userJwt = jwt.sign(
-	//	{
-	//		id: existingUser.id,
-	//		email: existingUser.email,
-	//	},
-	//	process.env.JWT_KEY!
-	//);
-
-	// Store it on session object
-	//req.session = {
-	//	jwt: userJwt,
-	//};
 
 	//return res.status(200).send(existingUser);
 });

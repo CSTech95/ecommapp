@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-//import { body } from "express-validator";
 import { validate } from "class-validator";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
@@ -15,7 +14,7 @@ router.post(
 	"/api/users/signup",
 	//validateRequest,
 	async (req: Request, res: Response) => {
-		const { fName, lName, email, password, address, state, zip, createdAt } = req.body;
+		const { fName, lName, email, password, otherInfo } = req.body;
 		const existingUser = await AppDataSource.getRepository(User).findOneBy({ email: req.body.email });
 
 		if (existingUser) {
@@ -23,7 +22,7 @@ router.post(
 			return res.send("User Exists"); // Fix this
 		}
 
-		const hashedPassword = await bcrypt.hash(req.body.password, 10);
+		const hashedPassword = await bcrypt.hash(password, 10);
 		const user = new User();
 
 		user.fName = fName;
@@ -31,9 +30,9 @@ router.post(
 		user.email = email;
 		user.password = hashedPassword;
 		user.otherInfo = {
-			address,
-			state,
-			zip,
+			address: otherInfo.address,
+			state: otherInfo.state,
+			zip: otherInfo.zip,
 			createdAt: Date.now(),
 		};
 
@@ -51,6 +50,11 @@ router.post(
 					email: user.email,
 					fName: user.fName,
 					lName: user.lName,
+					otherInfo: {
+						address: user.otherInfo.address,
+						state: user.otherInfo.state,
+						zip: user.otherInfo.zip,
+					},
 				},
 				//process.env.JWT_KEY!
 				"tinker"
