@@ -45,6 +45,7 @@ router.post("/api/users/signin", async (req: Request, res: Response) => {
 				otherInfo: {
 					address: existingUser.otherInfo.address,
 					state: existingUser.otherInfo.state,
+					zip: existingUser.otherInfo.zip,
 				},
 			},
 			//process.env.JWT_KEY!
