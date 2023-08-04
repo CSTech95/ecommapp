@@ -2,9 +2,9 @@ import { app } from "./app";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "./models/user";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-//TODO Connect to PostgreSQL DB with TypeORM
 export const AppDataSource = new DataSource({
 	type: "postgres",
 	host: process.env.DB_HOST,
@@ -18,14 +18,13 @@ export const AppDataSource = new DataSource({
 });
 
 const getUsers = async () => {
-	//TODO Swtich to Repository from manager
 	const userRepository = AppDataSource.getRepository(User);
 	const users = await userRepository.find();
 	console.log(users);
 };
 AppDataSource.initialize()
 	.then(() => {
-		console.log("DataSource Initialized");
+		//console.log("DataSource Initialized");
 		getUsers();
 	})
 	.catch((err) => console.log(err));
@@ -34,9 +33,13 @@ AppDataSource.initialize()
 
 const start = async () => {
 	const PORT = 3101;
-	app.listen(PORT, () => {
-		console.log("listening on port " + PORT);
-	});
+	if (app != undefined) {
+		app.listen(PORT, () => {
+			console.log("listening on port " + PORT);
+		});
+	} else {
+		console.log("Server is not yet ready");
+	}
 };
 
 start();
