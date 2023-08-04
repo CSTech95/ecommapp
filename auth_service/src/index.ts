@@ -25,7 +25,7 @@ const getUsers = async () => {
 AppDataSource.initialize()
 	.then(() => {
 		//console.log("DataSource Initialized");
-		getUsers();
+		//getUsers();
 	})
 	.catch((err) => console.log(err));
 
