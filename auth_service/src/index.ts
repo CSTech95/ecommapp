@@ -2,8 +2,7 @@ import { app } from "./app";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "./models/user";
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config";
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
@@ -28,8 +27,6 @@ AppDataSource.initialize()
 		//getUsers();
 	})
 	.catch((err) => console.log(err));
-
-//TODO Connect to PostgreSQL DB with TypeORM
 
 const start = async () => {
 	const PORT = 3101;
