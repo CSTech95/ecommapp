@@ -3,13 +3,15 @@ import { app } from "./app";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 
+import "dotenv/config";
+
 //TODO Connect to PostgreSQL DB with TypeORM
 export const AppDataSource = new DataSource({
 	type: "postgres",
-	host: "product.cnulqnh5pzex.us-east-1.rds.amazonaws.com",
+	host: process.env.DB_HOST,
 	port: 5432,
-	username: "postgres",
-	password: "Bridgeportin2",
+	username: process.env.USERNAME,
+	password: process.env.PASSWORD,
 	//database: "",
 	entities: [Order],
 	synchronize: true,
