@@ -15,8 +15,8 @@ export class Order {
 	//TODO Add interface for product value
 	products: string[] | undefined | string;
 
-	//@Column({ type: "varchar" })
-	//userId: number | undefined | string;
+	@Column({ type: "varchar" })
+	userId: number | undefined | string;
 
 	@Column({ type: "varchar" })
 	totalFee: number | undefined | string;
