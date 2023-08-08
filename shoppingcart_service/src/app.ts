@@ -4,12 +4,13 @@ import express, { Request, Response } from "express";
 import { json } from "body-parser";
 //Import cookieSession from cookie-session
 import cookiesession from "cookie-session";
+import { createCartRouter } from "./routes/createCart";
 //import Routes
 
 const app = express();
 
 app.set("trust-proxy", true);
-//app.use(json())
+app.use(json());
 app.use(
 	cookiesession({
 		signed: false,
@@ -17,15 +18,12 @@ app.use(
 	})
 );
 
-//TODO Add middleware for if a user is currently logged in
-//app.use(currentUser)
-
 //TODO input middleware param in method
-app.use();
-app.use();
-app.use();
-app.use();
-app.use();
+app.use(createCartRouter);
+//app.use();
+//app.use();
+//app.use();
+//app.use();
 
 app.all("*", async (req: Request, res: Response) => {
 	//throw new NotFoundError
