@@ -29,8 +29,6 @@ export const currentUser = (req: Request, res: Response, next: NextFunction) => 
 	try {
 		const payload = jwt.verify(req.session.jwt, "tinker") as UserPayload;
 		req.currentUser = payload;
-	} catch (error) {
-		res.send({ currentUser: null });
-	}
+	} catch (error) {}
 	next();
 };

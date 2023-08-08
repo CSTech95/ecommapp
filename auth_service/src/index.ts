@@ -2,7 +2,7 @@ import { app } from "./app";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "./models/user";
-import "dotenv/config";
+//import "dotenv/config";
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
@@ -19,14 +19,16 @@ export const AppDataSource = new DataSource({
 const getUsers = async () => {
 	const userRepository = AppDataSource.getRepository(User);
 	const users = await userRepository.find();
-	console.log(users);
+	if (users) console.log(users);
 };
 AppDataSource.initialize()
 	.then(() => {
 		//console.log("DataSource Initialized");
 		//getUsers();
 	})
-	.catch((err) => console.log(err));
+	.catch((err) => {
+		return err;
+	});
 
 const start = async () => {
 	const PORT = 3101;

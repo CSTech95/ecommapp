@@ -24,5 +24,8 @@
 		"reflect-metadata": "^0.1.13",
 		"typeorm": "^0.3.16",
 		"typescript": "^5.1.3"
+	},
+	"devDependencies": {
+		"@babel/plugin-proposal-decorators": "^7.22.10"
 	}
 }
