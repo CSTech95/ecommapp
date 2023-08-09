@@ -4,12 +4,13 @@ import express, { Request, Response } from "express";
 import { json } from "body-parser";
 //Import cookieSession from cookie-session
 import cookiesession from "cookie-session";
+import { getAllShipmentsRouter } from "./routes/getAllShipments";
 //import Routes
 
 const app = express();
 
 app.set("trust-proxy", true);
-//app.use(json())
+app.use(json());
 app.use(
 	cookiesession({
 		signed: false,
@@ -21,11 +22,11 @@ app.use(
 //app.use(currentUser)
 
 //TODO input middleware param in method
-app.use();
-app.use();
-app.use();
-app.use();
-app.use();
+app.use(getAllShipmentsRouter);
+//app.use();
+//app.use();
+//app.use();
+//app.use();
 
 app.all("*", async (req: Request, res: Response) => {
 	//throw new NotFoundError
