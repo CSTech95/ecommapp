@@ -1,7 +1,7 @@
-import { app } from "./app";
+import { app } from "./app.ts";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./models/user";
+import { User } from "./models/user.ts";
 //import "dotenv/config";
 
 export const AppDataSource = new DataSource({
