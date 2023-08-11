@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({ name: "shopping_cart" })
 export class ShoppingCart {
 	@PrimaryGeneratedColumn({ type: "int" })
 	@PrimaryGeneratedColumn("uuid")
@@ -15,4 +15,7 @@ export class ShoppingCart {
 	@Column("jsonb")
 	//TODO Add interface for product value
 	products: string[] | undefined | string;
+
+	@Column({ type: "varchar" })
+	totalFee: number | undefined | string;
 }

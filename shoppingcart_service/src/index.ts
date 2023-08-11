@@ -25,6 +25,7 @@ export const AppDataSource = new DataSource({
 AppDataSource.initialize()
 	.then(() => {
 		console.log("DataSource Initialized");
+		//AppDataSource.destroy();
 		//getProducts();
 	})
 	.catch((err) => console.log(err));
@@ -33,7 +34,7 @@ AppDataSource.initialize()
 //	var result = await queryRunner.manager.query(`SELECT * FROM products`);
 //	await console.log(result);
 //};
-const PORT = 3150;
+const PORT = 3950;
 const start = async () => {
 	app.listen(PORT, () => {
 		console.log("listening on port " + PORT);

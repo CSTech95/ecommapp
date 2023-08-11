@@ -5,6 +5,8 @@ import { json } from "body-parser";
 //Import cookieSession from cookie-session
 import cookiesession from "cookie-session";
 import { createCartRouter } from "./routes/createCart";
+import { updateCartRouter } from "./routes/updateCart";
+import { getAllCartsRouter } from "./routes/getAllCarts";
 //import Routes
 
 const app = express();
@@ -20,8 +22,8 @@ app.use(
 
 //TODO input middleware param in method
 app.use(createCartRouter);
-//app.use();
-//app.use();
+app.use(updateCartRouter);
+app.use(getAllCartsRouter);
 //app.use();
 //app.use();
 
