@@ -1,14 +1,14 @@
 import { app } from "./app.ts";
-import "reflect-metadata";
+//import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "./models/user.ts";
 //import "dotenv/config";
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
-	host: process.env.DB_HOST,
+	//host: process.env.DB_HOST,
 	port: 5432,
-	username: process.env.DB_USERNAME,
+	//username: process.env.DB_USERNAME,
 	password: process.env.DB_PASSWORD,
 	database: "user",
 	entities: [User],
@@ -25,6 +25,7 @@ AppDataSource.initialize()
 	.then(() => {
 		//console.log("DataSource Initialized");
 		//getUsers();
+		//AppDataSource.destroy();
 	})
 	.catch((err) => {
 		return err;

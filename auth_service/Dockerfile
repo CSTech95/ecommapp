@@ -3,19 +3,21 @@ FROM node:20-alpine
 WORKDIR /app/
 
 # 
-COPY ./package.json /app/package.json
+COPY ./package*.json /app/package.json
 #COPY ./auth_service/package-lock.json /app/package-lock.json
 
 COPY . /app/
-COPY ./tsconfig.json /app/
+COPY ./init.sql /app/docker-entrypoint-initdb.d/
+#COPY ./tsconfig.json /app/
 
-RUN rm -rf node_modules
+#RUN rm -rf node_modules
 
 # Same as npm install
-RUN npm install
+#RUN npm install
 
-CMD [ "npm", "start" ]
-
+#CMD [ "npm", "start" ]
+EXPOSE 3101
+CMD npm install && npm start
 #COPY ./auth_service /app
 #CMD [ "pwd" ]
 
