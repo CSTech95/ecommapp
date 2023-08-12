@@ -13,8 +13,8 @@ export const AppDataSource = new DataSource({
 	database: "user",
 	entities: [User],
 	synchronize: true,
-	dropSchema: true,
-	logging: true,
+	//dropSchema: true,
+	logging: false,
 });
 
 const getUsers = async () => {
