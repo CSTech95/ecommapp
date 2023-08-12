@@ -15,41 +15,22 @@ services:
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
         command: npm start
-        #volumes:
-        #- ./:/usr/src/app/
-        # node_modules workaround for volumes
-        # https://stackoverflow.com/a/32785014
-        #- /usr/src/app/node_modules
-        #- /app/node_modules
-        #restart: always
-        #command: ["ls"]
-        #volumes:
-        #    - ./auth_service/:/app/
+
         volumes:
             - ./auth_service:/usr/src/app/
             - /usr/src/app/node_modules
-        #environment:
-        #DATABASE_URL: postgres://user:password@postgres:5432/db
-        #NODE_ENV: development
-        #PORT: 3101
-        #DB_HOST: process.env.DB_HOST
-        #POSTGRES_PASSWORD:
-        #DB_NAME: user
 
     postgres_db:
         image: postgres:15
+        restart: unless-stopped
         environment:
-            # You can set the value of environment variables
-            # in your docker-compose.yml file
-            # Our Node app will use these to connect
-            # to the database
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=user
         ports:
-            # Standard port for PostgreSQL databases
             - "5432:5432"
         volumes:
+            #TODO Enable init script below
             # When the PostgreSQL container is started it will run any scripts
             # provided in the `docker-entrypoint-initdb.d` directory, this connects
             # our seed file to that directory so that it gets run
