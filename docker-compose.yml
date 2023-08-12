@@ -2,20 +2,32 @@ version: "3.8"
 services:
     auth_service:
         build:
-            context: ./auth_service
-            dockerfile: Dockerfile
+            #context: ./auth_service
+            dockerfile: ./auth_service/Dockerfile
         container_name: auth_service
         depends_on:
-            - db
+            - postgres_db
         ports:
             - 3101:3101
+        environment:
+            JWT_SECRET: tinker
+            PGHOST: postgres_db
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+        command: npm start
+        #volumes:
+        #- ./:/usr/src/app/
+        # node_modules workaround for volumes
+        # https://stackoverflow.com/a/32785014
+        #- /usr/src/app/node_modules
+        #- /app/node_modules
         #restart: always
         #command: ["ls"]
         #volumes:
         #    - ./auth_service/:/app/
-        #volumes:
-        #    - ./auth_service/:/app/
-        #    - /app/node_modules
+        volumes:
+            - ./auth_service:/usr/src/app/
+            - /usr/src/app/node_modules
         #environment:
         #DATABASE_URL: postgres://user:password@postgres:5432/db
         #NODE_ENV: development
@@ -24,24 +36,21 @@ services:
         #POSTGRES_PASSWORD:
         #DB_NAME: user
 
-    #postgres:
-    #    image: postgres:15
-    #    environment:
-    #        # You can set the value of environment variables
-    #        # in your docker-compose.yml file
-    #        # Our Node app will use these to connect
-    #        # to the database
-    #        - POSTGRES_USER=root
-    #        - POSTGRES_PASSWORD=root
-    #        - POSTGRES_DB=user
-    #    ports:
-    #        # Standard port for PostgreSQL databases
-    #        - "5432:5432"
-    db:
-        image: postgres
-        restart: always
-        ports:
-            - 5432:5432
-        command: postgres -c max_connections=200
+    postgres_db:
+        image: postgres:15
         environment:
-            POSTGRES_PASSWORD: exampleuserdb
+            # You can set the value of environment variables
+            # in your docker-compose.yml file
+            # Our Node app will use these to connect
+            # to the database
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=user
+        ports:
+            # Standard port for PostgreSQL databases
+            - "5432:5432"
+        volumes:
+            # When the PostgreSQL container is started it will run any scripts
+            # provided in the `docker-entrypoint-initdb.d` directory, this connects
+            # our seed file to that directory so that it gets run
+            - ./database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql

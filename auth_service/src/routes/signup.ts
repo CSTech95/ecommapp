@@ -57,7 +57,7 @@ router.post(
 					},
 				},
 				//process.env.JWT_KEY!
-				"tinker"
+				process.env.JWT_SECRET!
 			);
 
 			req.session = {

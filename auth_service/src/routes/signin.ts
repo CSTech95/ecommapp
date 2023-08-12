@@ -49,7 +49,7 @@ router.post("/api/users/signin", async (req: Request, res: Response) => {
 				},
 			},
 			//process.env.JWT_KEY!
-			"tinker"
+			process.env.JWT_SECRET!
 		);
 
 		req.session = {

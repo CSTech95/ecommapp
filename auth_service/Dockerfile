@@ -1,13 +1,19 @@
 FROM node:20-alpine
 
-WORKDIR /app/
+WORKDIR /usr/src/app
 
 # 
-COPY ./package*.json /app/package.json
-#COPY ./auth_service/package-lock.json /app/package-lock.json
+COPY package*.json ./
 
-COPY . /app/
-COPY ./init.sql /app/docker-entrypoint-initdb.d/
+RUN npm install
+
+#RUN apk add --no-cache --virtual .build-deps alpine-sdk python \
+# && npm install \
+# && npm rebuild bcrypt --build-from-source \
+# && apk del .build-deps
+
+COPY . .
+#COPY ./init.sql /app/docker-entrypoint-initdb.d/
 #COPY ./tsconfig.json /app/
 
 #RUN rm -rf node_modules
@@ -15,9 +21,8 @@ COPY ./init.sql /app/docker-entrypoint-initdb.d/
 # Same as npm install
 #RUN npm install
 
-#CMD [ "npm", "start" ]
 EXPOSE 3101
-CMD npm install && npm start
+#CMD [ "npm", "start" ]
 #COPY ./auth_service /app
 #CMD [ "pwd" ]
 

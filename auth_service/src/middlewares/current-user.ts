@@ -27,7 +27,7 @@ export const currentUser = (req: Request, res: Response, next: NextFunction) => 
 		return next();
 	}
 	try {
-		const payload = jwt.verify(req.session.jwt, "tinker") as UserPayload;
+		const payload = jwt.verify(req.session.jwt, process.env.JWT_SECRET!) as UserPayload;
 		req.currentUser = payload;
 	} catch (error) {}
 	next();
