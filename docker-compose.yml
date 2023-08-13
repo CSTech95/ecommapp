@@ -55,3 +55,22 @@ services:
         volumes:
             - ./product_service:/usr/src/app/
             - /usr/src/app/node_modules
+
+    shoppingcart_service:
+        build:
+            dockerfile: ./shoppingcart_service/Dockerfile
+        container_name: shoppingcart_service
+        depends_on:
+            - postgres_db
+        ports:
+            - 3950:3950
+        environment:
+            JWT_SECRET: tinker
+            PGHOST: postgres_db
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+        command: npm start
+
+        volumes:
+            - ./shoppingcart_service:/usr/src/app/
+            - /usr/src/app/node_modules

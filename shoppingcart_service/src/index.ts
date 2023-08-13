@@ -15,25 +15,14 @@ export const AppDataSource = new DataSource({
 	synchronize: true,
 	logging: false,
 });
-//const getProducts = async () => {
-////	//TODO Swtich to Repository from manager
-//	const productRepository = AppDataSource.getRepository(Product);
-//	const products = await productRepository.find();
-//	console.log(products);
-//};
 
 AppDataSource.initialize()
 	.then(() => {
 		console.log("DataSource Initialized");
 		//AppDataSource.destroy();
-		//getProducts();
 	})
 	.catch((err) => console.log(err));
-//async () => {
-//	const queryRunner = await AppDataSource.createQueryRunner();
-//	var result = await queryRunner.manager.query(`SELECT * FROM products`);
-//	await console.log(result);
-//};
+
 const PORT = 3950;
 const start = async () => {
 	app.listen(PORT, () => {
