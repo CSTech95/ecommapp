@@ -35,3 +35,23 @@ services:
             # provided in the `docker-entrypoint-initdb.d` directory, this connects
             # our seed file to that directory so that it gets run
             - ./database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
+
+    product_service:
+        build:
+            #context: ./auth_service
+            dockerfile: ./product_service/Dockerfile
+        container_name: product_service
+        depends_on:
+            - postgres_db
+        ports:
+            - 3000:3000
+        environment:
+            JWT_SECRET: tinker
+            PGHOST: postgres_db
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+        command: npm start
+
+        volumes:
+            - ./product_service:/usr/src/app/
+            - /usr/src/app/node_modules

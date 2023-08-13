@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"start": "concurrently \"cd auth_service && npm start\" "
+		"start": "concurrently \"cd auth_service && npm start\" \"cd product_service && npm start\""
 	},
 	"jest": {
 		"testEnvironment": "node"
