@@ -74,3 +74,47 @@ services:
         volumes:
             - ./shoppingcart_service:/usr/src/app/
             - /usr/src/app/node_modules
+
+    order_service:
+        build:
+            dockerfile: ./order_service/Dockerfile
+        container_name: order_service
+        depends_on:
+            - postgres_db
+        ports:
+            - 3130:3130
+        environment:
+            JWT_SECRET: tinker
+            PGHOST: postgres_db
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+        command: npm start
+
+        volumes:
+            - ./order_service:/usr/src/app/
+            - /usr/src/app/node_modules
+
+    shipping_service:
+        build:
+            dockerfile: ./shipping_service/Dockerfile
+        container_name: shipping_service
+        depends_on:
+            - postgres_db
+        ports:
+            - 3777:3777
+        environment:
+            JWT_SECRET: tinker
+            PGHOST: postgres_db
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+        command: npm start
+
+        volumes:
+            - ./shipping_service:/usr/src/app/
+            - /usr/src/app/node_modules
+
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+            - 5672:5672
+            - 15672:15672
