@@ -1,4 +1,3 @@
-//import { User } from '../../../../../auth_service/src/models/user';
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 // Relocate this to common library

@@ -1,5 +1,8 @@
-import amqp from "amqplib";
-import { Channel } from "amqplib";
+import amqp, { Connection, Channel, ConsumeMessage } from "amqplib";
+//import * as amqplib from "amqplib";
+
+//import amqp = require('amqplib');
+
 import { Order } from "../models/order";
 
 import { config } from "./config";
@@ -13,7 +16,7 @@ class Producer {
 	channel!: Channel;
 
 	async createChannel() {
-		const connection = await amqp.connect(config.rabbitMQ.url);
+		const connection: Connection = await amqp.connect(process.env.AMQP_URL! || config.rabbitMQ.url);
 		this.channel = await connection.createChannel();
 	}
 
@@ -22,7 +25,7 @@ class Producer {
 			await this.createChannel();
 		}
 
-		const exchangeName = config.rabbitMQ.exchangeName;
+		const exchangeName = process.env.RABBITMQ_EXCHANGE_NAME! || config.rabbitMQ.exchangeName;
 		await this.channel.assertExchange(exchangeName, "direct");
 
 		const logDetails = {

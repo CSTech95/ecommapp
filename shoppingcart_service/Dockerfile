@@ -13,3 +13,4 @@ COPY . .
 
 
 EXPOSE 3950
+CMD [ "npm", "start" ]

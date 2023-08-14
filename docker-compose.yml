@@ -14,7 +14,7 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
-        command: npm start
+        #command: npm start
 
         volumes:
             - ./auth_service:/usr/src/app/
@@ -50,7 +50,7 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
-        command: npm start
+        #command: npm start
 
         volumes:
             - ./product_service:/usr/src/app/
@@ -69,7 +69,7 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
-        command: npm start
+        #command: npm start
 
         volumes:
             - ./shoppingcart_service:/usr/src/app/
@@ -79,6 +79,7 @@ services:
         build:
             dockerfile: ./order_service/Dockerfile
         container_name: order_service
+        restart: always
         depends_on:
             - postgres_db
         ports:
@@ -88,7 +89,9 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
-        command: npm start
+            AMQP_URL: amqp://guest:guest@rabbitmq:5672
+            RABBITMQ_EXCHANGE_NAME: ORDER_EXCHANGE
+        #command: npm start
 
         volumes:
             - ./order_service:/usr/src/app/
@@ -100,6 +103,7 @@ services:
         container_name: shipping_service
         depends_on:
             - postgres_db
+            - rabbitmq
         ports:
             - 3777:3777
         environment:
@@ -107,7 +111,7 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
-        command: npm start
+        #command: npm start
 
         volumes:
             - ./shipping_service:/usr/src/app/
@@ -115,6 +119,19 @@ services:
 
     rabbitmq:
         image: rabbitmq:3-management
+        restart: always
         ports:
             - 5672:5672
             - 15672:15672
+        #volumes:
+        #    - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        #    - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        environment:
+            #RABBITMQ_NODE_IP_ADDRESS:
+            - "RABBITMQ_DEFAULT_PASS=password"
+            - "RABBITMQ_DEFAULT_USER=username"
+        networks:
+            - rabbitmq_nodejs
+networks:
+    rabbitmq_nodejs:
+        driver: bridge
