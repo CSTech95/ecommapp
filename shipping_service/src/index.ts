@@ -1,4 +1,5 @@
 import { app } from "./app";
+import "reflect-metadata";
 import amqplib, { Channel, Connection } from "amqplib";
 
 //TODO Connect to PostgreSQL DB with TypeORM
@@ -10,11 +11,11 @@ connect();
 
 async function connect() {
 	try {
-		const amqpServer = "amqp://localhost:5672";
+		const amqpServer = process.env.AMQP_URL! || "amqp://localhost:5672";
 		connection = await amqplib.connect(amqpServer);
 		channel = await connection.createChannel();
-
-		channel.bindQueue("orderQueue", "orderExchange", "order_key");
+		const exchangeName = process.env.RABBITMQ_EXCHANGE_NAME! || "orderExchange";
+		channel.bindQueue("orderQueue", exchangeName, "order_key");
 
 		// consume all the orders that are not acknowledged
 		await channel.consume("orderQueue", (data) => {

@@ -82,6 +82,7 @@ services:
         restart: always
         depends_on:
             - postgres_db
+            - rabbitMQ
         ports:
             - 3130:3130
         environment:
@@ -123,13 +124,13 @@ services:
         ports:
             - 5672:5672
             - 15672:15672
-        #volumes:
-        #    - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        #    - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        volumes:
+            - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+            - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
         environment:
             #RABBITMQ_NODE_IP_ADDRESS:
-            - "RABBITMQ_DEFAULT_PASS=password"
             - "RABBITMQ_DEFAULT_USER=username"
+            - "RABBITMQ_DEFAULT_PASS=password"
         networks:
             - rabbitmq_nodejs
 networks:
