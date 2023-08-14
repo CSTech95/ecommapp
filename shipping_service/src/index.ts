@@ -7,8 +7,6 @@ import amqplib, { Channel, Connection } from "amqplib";
 // rabbitmq to be global variables
 let channel: Channel, connection: Connection;
 
-connect();
-
 async function connect() {
 	try {
 		const amqpServer = process.env.AMQP_URL! || "amqp://localhost:5672";
@@ -16,9 +14,9 @@ async function connect() {
 		channel = await connection.createChannel();
 		const exchangeName = process.env.RABBITMQ_EXCHANGE_NAME! || "orderExchange";
 		channel.bindQueue("orderQueue", exchangeName, "order_key");
-
+		//guest:guest@rabbitmq:5672
 		// consume all the orders that are not acknowledged
-		await channel.consume("orderQueue", (data) => {
+		amqp: await channel.consume("orderQueue", (data) => {
 			console.log(`Received ${Buffer.from(data!.content)}`);
 			channel.ack(data!);
 		});
@@ -26,6 +24,8 @@ async function connect() {
 		console.log(error);
 	}
 }
+
+connect();
 
 const PORT = 3777;
 const start = async () => {

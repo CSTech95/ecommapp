@@ -82,7 +82,7 @@ services:
         restart: always
         depends_on:
             - postgres_db
-            - rabbitMQ
+            - rabbitmq
         ports:
             - 3130:3130
         environment:
@@ -102,12 +102,14 @@ services:
         build:
             dockerfile: ./shipping_service/Dockerfile
         container_name: shipping_service
+        restart: always
         depends_on:
             - postgres_db
             - rabbitmq
         ports:
             - 3777:3777
         environment:
+            AMQP_URL: amqp://guest:guest@rabbitmq:5672
             JWT_SECRET: tinker
             PGHOST: postgres_db
             DB_USERNAME: postgres
@@ -129,10 +131,10 @@ services:
             - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
         environment:
             #RABBITMQ_NODE_IP_ADDRESS:
-            - "RABBITMQ_DEFAULT_USER=username"
-            - "RABBITMQ_DEFAULT_PASS=password"
-        networks:
-            - rabbitmq_nodejs
-networks:
-    rabbitmq_nodejs:
-        driver: bridge
+            - "RABBITMQ_DEFAULT_USER=guest"
+            - "RABBITMQ_DEFAULT_PASS=guest"
+#        networks:
+#            - rabbitmq_nodejs
+#networks:
+#    rabbitmq_nodejs:
+#        driver: bridge
