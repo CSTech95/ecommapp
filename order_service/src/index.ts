@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
 	port: 5432,
 	username: process.env.DB_USERNAME,
 	password: process.env.DB_PASSWORD,
-	database: "order",
+	database: process.env.DB_NAME || "order",
 	entities: [Order],
 	synchronize: true,
 	logging: false,
@@ -26,7 +26,7 @@ const getOrders = async () => {
 AppDataSource.initialize()
 	.then(async () => {
 		console.log("DataSource is Initialized");
-		getOrders();
+		//getOrders();
 	})
 	.catch((err) => console.log(err));
 //async () => {

@@ -14,6 +14,7 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
+            DB_NAME: user
         #command: npm start
 
         volumes:
@@ -50,6 +51,7 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
+            DB_Name: product
         #command: npm start
 
         volumes:
@@ -69,6 +71,7 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
+            DB_NAME: shoppingcart
         #command: npm start
 
         volumes:
@@ -90,8 +93,10 @@ services:
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
+            DB_NAME: order
             AMQP_URL: amqp://guest:guest@rabbitmq:5672
-            RABBITMQ_EXCHANGE_NAME: ORDER_EXCHANGE
+            ORDER_EXCHANGE_NAME: ORDER_EXCHANGE
+            ORDER_ROUTING_KEY: order_key
         #command: npm start
 
         volumes:
@@ -109,11 +114,15 @@ services:
         ports:
             - 3777:3777
         environment:
-            AMQP_URL: amqp://guest:guest@rabbitmq:5672
             JWT_SECRET: tinker
             PGHOST: postgres_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
+            DB_NAME: shipment
+            AMQP_URL: amqp://guest:guest@rabbitmq:5672
+            ORDER_EXCHANGE_NAME: ORDER_EXCHANGE
+            SHIPPING_QUEUE_NAME: shipping_queue
+            SHIPPING_MESSAGE_KEY: order_key
         #command: npm start
 
         volumes:

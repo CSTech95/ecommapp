@@ -8,7 +8,7 @@ export class Order {
 	id: string | undefined;
 
 	//@Column({ type: "varchar" })
-	//productId: number | undefined | string;
+	//orderId: number | undefined | string;
 
 	@Column("jsonb")
 	//TODO Add interface for product value

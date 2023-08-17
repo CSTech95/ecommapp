@@ -20,13 +20,13 @@ class Producer {
 		this.channel = await connection.createChannel();
 	}
 
-	async publishMessage(routingKey: string, message: Order) {
+	async publishMessage(routingKey: string, message: any) {
 		if (!this.channel) {
 			await this.createChannel();
 		}
 
-		const exchangeName = process.env.RABBITMQ_EXCHANGE_NAME! || config.rabbitMQ.exchangeName;
-		await this.channel.assertExchange(exchangeName, "direct");
+		const exchangeName = process.env.ORDER_EXCHANGE_NAME! || config.rabbitMQ.exchangeName;
+		await this.channel.assertExchange(exchangeName, "fanout");
 
 		const logDetails = {
 			logType: routingKey,
