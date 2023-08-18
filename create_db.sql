@@ -1,0 +1,12 @@
+--Create Databases
+
+--DROP DATABASE IF EXISTS "user";
+--CREATE DATABASE "user";
+DROP DATABASE IF EXISTS "order";
+CREATE DATABASE "order";
+DROP DATABASE IF EXISTS "shoppingcart";
+CREATE DATABASE "shoppingcart";
+DROP DATABASE IF EXISTS "product";
+CREATE DATABASE "product";
+DROP DATABASE IF EXISTS "shipment";
+CREATE DATABASE "shipment";
