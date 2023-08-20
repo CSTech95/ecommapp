@@ -37,7 +37,7 @@ AppDataSource.initialize()
 
 const start = async () => {
 	app.listen(3000, () => {
-		console.log("listening on port 3000");
+		console.log("Product_service listening on port 3000");
 	});
 };
 

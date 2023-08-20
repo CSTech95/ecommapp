@@ -26,7 +26,7 @@ AppDataSource.initialize()
 const PORT = 3950;
 const start = async () => {
 	app.listen(PORT, () => {
-		console.log("listening on port " + PORT);
+		console.log("ShoppingCart_service listening on port " + PORT);
 	});
 };
 

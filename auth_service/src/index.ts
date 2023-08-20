@@ -37,7 +37,7 @@ const start = async () => {
 	const PORT = 3101;
 	if (app != undefined) {
 		app.listen(PORT, () => {
-			console.log("listening on port " + PORT);
+			console.log("Auth_service listening on port " + PORT);
 		});
 	} else {
 		console.log("Server is not yet ready");

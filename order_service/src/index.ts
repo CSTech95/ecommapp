@@ -37,7 +37,7 @@ AppDataSource.initialize()
 
 const start = async () => {
 	app.listen(3130, () => {
-		console.log("listening on port 3130");
+		console.log("Order_service listening on port 3130");
 	});
 };
 
