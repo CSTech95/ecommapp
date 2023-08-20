@@ -25,7 +25,7 @@ const getOrders = async () => {
 
 AppDataSource.initialize()
 	.then(async () => {
-		console.log("DataSource is Initialized");
+		console.log("Order Service's DataSource is Initialized");
 		//getOrders();
 	})
 	.catch((err) => console.log(err));

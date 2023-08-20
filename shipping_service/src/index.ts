@@ -45,7 +45,7 @@ export const AppDataSource = new DataSource({
 
 AppDataSource.initialize()
 	.then(async () => {
-		console.log("DataSource is Initialized");
+		console.log("Shipping Service's DataSource is Initialized");
 	})
 	.catch((err) => console.log(err));
 
@@ -54,7 +54,7 @@ async function connect() {
 		const amqpServer = process.env.AMQP_URL! || "amqp://localhost:5672";
 		const exchangeName = process.env.ORDER_EXCHANGE_NAME! || "orderExchange";
 		const shippingKey = process.env.SHIPPING_MESSAGE_KEY || "order_key";
-		connection = await amqplib.connect(amqpServer);
+		connection = await amqplib.connect("amqp://localhost");
 		channel = await connection.createChannel();
 		const shippingQueueName = process.env.SHIPPING_QUEUE_NAME || "shipqueue";
 		channel.assertExchange(exchangeName, "fanout", {
@@ -106,7 +106,7 @@ connect();
 const PORT = 3777;
 const start = async () => {
 	app.listen(PORT, () => {
-		console.log("listening on port " + PORT);
+		console.log("Shipping_service listening on port " + PORT);
 	});
 };
 

@@ -24,7 +24,7 @@ const getUsers = async () => {
 };
 AppDataSource.initialize()
 	.then(() => {
-		console.log("DataSource Initialized");
+		console.log("Auth Service's DataSource Initialized");
 		//getUsers();
 		//AppDataSource.destroy();
 		//AppDataSource.initialize();

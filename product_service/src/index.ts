@@ -25,7 +25,7 @@ export const AppDataSource = new DataSource({
 
 AppDataSource.initialize()
 	.then(() => {
-		console.log("DataSource Initialized");
+		console.log("Product Service's DataSource Initialized");
 		//getProducts();
 	})
 	.catch((err) => console.log(err));

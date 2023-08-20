@@ -18,7 +18,7 @@ export const AppDataSource = new DataSource({
 
 AppDataSource.initialize()
 	.then(() => {
-		console.log("DataSource Initialized");
+		console.log("Shopping Cart Service's DataSource Initialized");
 		//AppDataSource.destroy();
 	})
 	.catch((err) => console.log(err));
