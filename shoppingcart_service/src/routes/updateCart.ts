@@ -1,25 +1,38 @@
 import { ShoppingCart } from "../models/shoppingcart";
 import express, { Router, Request, Response } from "express";
 import { AppDataSource } from "../index";
+import { currentUser } from "@adecomm/common";
 
-//Product;
 const router = express.Router();
 
-router.put("/api/cart/:id", async (req: Request, res: Response) => {
-	const cart = await AppDataSource.getRepository(ShoppingCart).findOneBy({ id: req.params.id });
-	if (!cart) {
-		res.sendStatus(204);
+router.put("/api/cart/", currentUser, async (req: Request, res: Response) => {
+	if (!req.currentUser) {
+		throw new Error("Must be logged in");
 	}
+	const userSessionId = await req.currentUser.id!;
+	console.log(userSessionId);
 
-	const products = req.body.products;
+	const allCarts = await AppDataSource.getRepository(ShoppingCart);
+	const findCart = await allCarts.find({
+		where: {
+			userId: userSessionId,
+		},
+	});
+	const cart = findCart[0];
+	console.log(cart);
 
-	const sum: number = products.reduce((acc: any, obj: any) => {
+	const additionalProducts = req.body.products;
+	cart.products = [...additionalProducts];
+
+	await AppDataSource.getRepository(ShoppingCart).merge(cart, additionalProducts);
+
+	const sum: number = cart.products.reduce((acc: any, obj: any) => {
 		acc += parseInt(obj.price);
 		return acc;
 	}, 0);
 
-	AppDataSource.getRepository(ShoppingCart).merge(cart!, req.body);
 	cart!.totalFee = sum;
+
 	const results = await AppDataSource.getRepository(ShoppingCart).save(cart!);
 	return res.status(202).send(results);
 });

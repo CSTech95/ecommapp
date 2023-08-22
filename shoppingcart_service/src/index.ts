@@ -1,5 +1,6 @@
 import { app } from "./app";
-//import "reflect-metadata";
+import "reflect-metadata";
+import "dotenv/config";
 import { DataSource, QueryRunner } from "typeorm";
 import { ShoppingCart } from "./models/shoppingcart";
 
@@ -25,6 +26,11 @@ AppDataSource.initialize()
 
 const PORT = 3950;
 const start = async () => {
+	if (!process.env.JWT_SECRET) {
+		throw new Error("JWT_SECRET must be defined");
+	}
+	console.log(process.env.JWT_SECRET);
+
 	app.listen(PORT, () => {
 		console.log("ShoppingCart_service listening on port " + PORT);
 	});

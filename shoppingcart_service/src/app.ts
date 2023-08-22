@@ -7,6 +7,7 @@ import cookiesession from "cookie-session";
 import { createCartRouter } from "./routes/createCart";
 import { updateCartRouter } from "./routes/updateCart";
 import { getAllCartsRouter } from "./routes/getAllCarts";
+import { getUserCartRouter } from "./routes/getUserCart";
 //import Routes
 
 const app = express();
@@ -16,7 +17,7 @@ app.use(json());
 app.use(
 	cookiesession({
 		signed: false,
-		secure: process.env.NODE_ENV != "test",
+		secure: false,
 	})
 );
 
@@ -24,7 +25,7 @@ app.use(
 app.use(createCartRouter);
 app.use(updateCartRouter);
 app.use(getAllCartsRouter);
-//app.use();
+app.use(getUserCartRouter);
 //app.use();
 
 app.all("*", async (req: Request, res: Response) => {
