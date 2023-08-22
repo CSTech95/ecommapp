@@ -1,3 +1,4 @@
+import { Product } from "@adecomm/common";
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 // Relocate this to common library
@@ -12,7 +13,7 @@ export class Order {
 
 	@Column("jsonb")
 	//TODO Add interface for product value
-	products: string[] | undefined | string;
+	products: Product[] | undefined | string;
 
 	@Column({ type: "varchar" })
 	userId: number | undefined | string;

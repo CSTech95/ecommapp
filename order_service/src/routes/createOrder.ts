@@ -2,25 +2,9 @@ import { Order } from "../models/order";
 import { Producer } from "../rabbitmq/producer";
 import { AppDataSource } from "./../index";
 import { Router, Request, Response } from "express";
+import { Product, sum } from "@adecomm/common";
 
 const producer = new Producer();
-
-interface Product {
-	id?: string;
-	title?: string;
-	description?: string;
-	price?: string;
-	discountedPercentage?: string;
-	rating?: string;
-	stock?: string;
-	brand?: string;
-	category?: string;
-	thumbnail?: string;
-	images?: string;
-}
-interface ProductData {
-	[key: string]: Product;
-}
 
 const router = Router();
 router.post("/api/order", async (req: Request, res: Response) => {
@@ -29,13 +13,11 @@ router.post("/api/order", async (req: Request, res: Response) => {
 		const { products, userId } = req.body;
 		const order = new Order();
 
-		const sum = products.reduce((acc: any, obj: any) => {
-			acc += parseInt(obj.price);
-			return acc;
-		}, 0);
+		//const productsPayload: Product[] = products;
+
 		order.userId = userId;
-		order.totalFee = sum;
-		order.products = products;
+		order.totalFee = sum(products);
+		order.products = products as Product[];
 		order.createdAt = Date.now();
 
 		const orderRepositoy = await AppDataSource.getRepository(Order);
