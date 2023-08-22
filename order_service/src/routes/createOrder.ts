@@ -13,12 +13,10 @@ router.post("/api/order", async (req: Request, res: Response) => {
 		const { products, userId } = req.body;
 		const order = new Order();
 
-		//const productsPayload: Product[] = products;
-
 		order.userId = userId;
 		order.totalFee = sum(products);
 		order.products = products as Product[];
-		order.createdAt = Date.now();
+		order.createdAt = new Date().toLocaleString();
 
 		const orderRepositoy = await AppDataSource.getRepository(Order);
 		await orderRepositoy.save(order);

@@ -33,7 +33,7 @@ router.post(
 			address: otherInfo.address,
 			state: otherInfo.state,
 			zip: otherInfo.zip,
-			createdAt: Date.now(),
+			createdAt: new Date().toLocaleString(),
 		};
 
 		const errors = await validate(user);
