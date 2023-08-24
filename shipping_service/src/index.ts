@@ -33,10 +33,10 @@ export class Order {
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
-	host: process.env.PGHOST,
+	//host: process.env.PGHOST,
 	port: 5432,
-	username: process.env.DB_USERNAME,
-	password: process.env.DB_PASSWORD,
+	//username: process.env.DB_USERNAME,
+	//password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME || "shipment",
 	entities: [Shipment],
 	synchronize: true,
