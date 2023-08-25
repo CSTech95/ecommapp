@@ -2,11 +2,11 @@ import express, { Request, Response } from "express";
 import { validate } from "class-validator";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { AppDataSource } from "../../src/index";
 
 //import { validateRequest, BadRequestError } from "@adecomm/common";
 
 import { User } from "../models/user";
+import AppDataSource from "../../config/ormconfig";
 
 const router = express.Router();
 

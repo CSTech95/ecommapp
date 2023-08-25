@@ -1,37 +1,16 @@
 import "dotenv/config";
 import { app } from "./app.ts";
-//import "reflect-metadata";
-import { DataSource } from "typeorm";
+import "reflect-metadata";
 import { User } from "./models/user.ts";
+import AppDataSource from "../config/ormconfig.ts";
 
-export const AppDataSource = new DataSource({
-	type: "postgres",
-	host: process.env.PGHOST,
-	port: 5432,
-	username: process.env.DB_USERNAME,
-	password: process.env.DB_PASSWORD,
-	database: process.env.DB_NAME || "user",
-	entities: [User],
-	synchronize: true,
-	//dropSchema: true,
-	logging: false,
-});
+AppDataSource.initialize();
 
 const getUsers = async () => {
 	const userRepository = AppDataSource.getRepository(User);
 	const users = await userRepository.find();
 	if (users) console.log(users);
 };
-AppDataSource.initialize()
-	.then(() => {
-		console.log("Auth Service's DataSource Initialized");
-		//getUsers();
-		//AppDataSource.destroy();
-		//AppDataSource.initialize();
-	})
-	.catch((err) => {
-		return err;
-	});
 
 const start = async () => {
 	const PORT = 3101;

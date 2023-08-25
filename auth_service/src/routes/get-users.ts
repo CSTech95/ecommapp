@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { User } from "../models/user";
-import { AppDataSource } from "../index";
+import AppDataSource from "../../config/ormconfig";
 
 const router = express.Router();
 const user = new User();

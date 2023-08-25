@@ -1,13 +1,13 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { AppDataSource } from "../index";
 import bcrypt from "bcrypt";
 import { validate } from "class-validator";
 //import { validateRequest, BadRequestError } from "@adecomm/common";
 
 import { Password } from "../services/password";
 import { User } from "../models/user";
+import AppDataSource from "../../config/ormconfig";
 
 const router = express.Router();
 //TODO :: Error Handling
