@@ -30,7 +30,7 @@ app.use(getAllUsersRouter);
 app.all("*", async (req: Request, res: Response) => {
 	//throw new NotFoundError
 	console.log("No route available");
-	res.send("No Route Available");
+	res.status(404).send("No Route Available");
 });
 
 //app.use(errorHandler)

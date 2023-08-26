@@ -3,10 +3,16 @@ import { app } from "../../app";
 import { User } from "../../models/user";
 import request from "supertest";
 
-it("should respond with users", async () => {
+beforeEach(async () => {
 	await AppDataSource.initialize();
-	const response = await request(app).get("/api/users/").expect(200);
-	console.log(response.body);
+});
 
-	//expect(response.body).toEqual("");
+afterEach(async () => {
+	await AppDataSource.destroy();
+});
+
+it("First name of first user should be pwd", async () => {
+	const response = await request(app).get("/api/users/").expect(200);
+
+	expect(response.body[0].fName).toEqual("pwd");
 });
