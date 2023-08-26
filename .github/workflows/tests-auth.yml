@@ -5,7 +5,7 @@ on:
         branches:
             - main
         paths:
-            - "auth_service/**"
+            - "../../auth_service/**"
 
 jobs:
     build:
