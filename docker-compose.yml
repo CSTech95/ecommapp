@@ -17,9 +17,11 @@ services:
             DB_NAME: user
         #command: npm start
 
-        volumes:
-            - ./auth_service:/usr/src/app/
-            - /usr/src/app/node_modules
+        #volumes:
+        #    - ./auth_service:/usr/src/app/
+        #    - ./auth_service/src:/usr/src/app/src
+        #    - ./auth_service/node_modules:/usr/src/app/node_modules
+        #    #- /usr/src/app/node_modules
 
     postgres_db:
         image: postgres:15
@@ -37,7 +39,6 @@ services:
             # our seed file to that directory so that it gets run
             - ./create_db.sql:/docker-entrypoint-initdb.d/database-seed.sql
             #- ./database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
-
     product_service:
         build:
             #context: ./auth_service
@@ -54,10 +55,9 @@ services:
             DB_PASSWORD: postgres
             DB_Name: product
         #command: npm start
-
-        volumes:
-            - ./product_service:/usr/src/app/
-            - /usr/src/app/node_modules
+    #        volumes:
+    #            - ./product_service:/usr/src/app/
+    #            #- /usr/src/app/node_modules
 
     shoppingcart_service:
         build:
@@ -73,11 +73,11 @@ services:
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
             DB_NAME: shoppingcart
-        #command: npm start
+    #        #command: npm start
 
-        volumes:
-            - ./shoppingcart_service:/usr/src/app/
-            - /usr/src/app/node_modules
+    #        volumes:
+    #            - ./shoppingcart_service:/usr/src/app/
+    #            #- /usr/src/app/node_modules
 
     order_service:
         build:
@@ -98,11 +98,11 @@ services:
             AMQP_URL: amqp://guest:guest@rabbitmq:5672
             ORDER_EXCHANGE_NAME: ORDER_EXCHANGE
             ORDER_ROUTING_KEY: order_key
-        #command: npm start
+    #        #command: npm start
 
-        volumes:
-            - ./order_service:/usr/src/app/
-            - /usr/src/app/node_modules
+    #        volumes:
+    #            - ./order_service:/usr/src/app/
+    #            #- /usr/src/app/node_modules
 
     shipping_service:
         build:
@@ -126,9 +126,9 @@ services:
             SHIPPING_MESSAGE_KEY: order_key
         #command: npm start
 
-        volumes:
-            - ./shipping_service:/usr/src/app/
-            - /usr/src/app/node_modules
+        #volumes:
+        #    - ./shipping_service:/usr/src/app/
+        #    #- /usr/src/app/node_modules
 
     rabbitmq:
         image: rabbitmq:3-management

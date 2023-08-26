@@ -33,10 +33,10 @@ export class Order {
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
-	//host: process.env.PGHOST,
+	host: process.env.PGHOST,
 	port: 5432,
-	//username: process.env.DB_USERNAME,
-	//password: process.env.DB_PASSWORD,
+	username: process.env.DB_USERNAME,
+	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME || "shipment",
 	entities: [Shipment],
 	synchronize: true,
@@ -51,10 +51,10 @@ AppDataSource.initialize()
 
 async function connect() {
 	try {
-		const amqpServer = process.env.AMQP_URL! || "amqp://localhost:5672";
+		const amqp_url = process.env.AMQP_URL! || "amqp://localhost:5672";
 		const exchangeName = process.env.ORDER_EXCHANGE_NAME! || "orderExchange";
 		const shippingKey = process.env.SHIPPING_MESSAGE_KEY || "order_key";
-		connection = await amqplib.connect("amqp://localhost");
+		connection = await amqplib.connect(amqp_url);
 		channel = await connection.createChannel();
 		const shippingQueueName = process.env.SHIPPING_QUEUE_NAME || "shipqueue";
 		channel.assertExchange(exchangeName, "fanout", {

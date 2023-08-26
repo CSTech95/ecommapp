@@ -7,7 +7,7 @@ import { ShoppingCart } from "./models/shoppingcart";
 //TODO Connect to PostgreSQL DB with TypeORM
 export const AppDataSource = new DataSource({
 	type: "postgres",
-	host: process.env.DB_HOST,
+	host: process.env.PGHOST,
 	port: 5432,
 	username: process.env.DB_USERNAME,
 	password: process.env.DB_PASSWORD,
@@ -29,7 +29,6 @@ const start = async () => {
 	if (!process.env.JWT_SECRET) {
 		throw new Error("JWT_SECRET must be defined");
 	}
-	console.log(process.env.JWT_SECRET);
 
 	app.listen(PORT, () => {
 		console.log("ShoppingCart_service listening on port " + PORT);

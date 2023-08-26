@@ -3,13 +3,13 @@ FROM node:20-alpine
 WORKDIR /usr/src/app
 
 # 
-COPY package*.json ./
+COPY ./product_service/package*.json .
 
 RUN npm install
 
 
 
-COPY . .
+COPY ./product_service .
 
 
 EXPOSE 3000

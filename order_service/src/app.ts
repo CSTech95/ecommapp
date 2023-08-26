@@ -13,12 +13,12 @@ const app = express();
 
 app.set("trust-proxy", true);
 app.use(json());
-//app.use(
-//	cookiesession({
-//		signed: false,
-//		secure: process.env.NODE_ENV != "test",
-//	})
-//);
+app.use(
+	cookiesession({
+		signed: false,
+		//secure: process.env.NODE_ENV != "test",
+	})
+);
 
 //TODO Add middleware for if a user is currently logged in
 //app.use(currentUser)

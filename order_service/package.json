@@ -10,7 +10,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@adecomm/common": "^1.0.22",
+		"@adecomm/common": "^1.0.25",
 		"@types/amqplib": "^0.10.1",
 		"@types/body-parser": "^1.19.2",
 		"@types/cookie-session": "^2.0.44",

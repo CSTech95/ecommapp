@@ -14,9 +14,9 @@ import { config } from "./config";
 
 class Producer {
 	channel!: Channel;
-	//amqp_url = process.env.AMQP_URL! || config.rabbitMQ.url;
 	async createChannel() {
-		const connection: Connection = await amqp.connect("amqp://localhost");
+		let amqp_url = process.env.AMQP_URL! || config.rabbitMQ.url;
+		const connection: Connection = await amqp.connect(amqp_url);
 		this.channel = await connection.createChannel();
 	}
 

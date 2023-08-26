@@ -16,7 +16,7 @@ export class Order {
 	products: Product[] | undefined | string;
 
 	@Column({ type: "varchar" })
-	userId: number | undefined | string;
+	userId: number | undefined | string | null;
 
 	@Column({ type: "varchar" })
 	totalFee: number | undefined | string;
