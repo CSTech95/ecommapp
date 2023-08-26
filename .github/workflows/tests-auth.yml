@@ -1,11 +1,13 @@
-name: Tests
+name: Test-auth
 
 on:
     push:
+        paths:
+            - "auth_service/**"
 
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - run: npm ci && npm test
+            - run: cd auth_service && npm ci && npm test
