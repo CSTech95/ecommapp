@@ -3,12 +3,12 @@ import { app } from "../../app";
 import { User } from "../../models/user";
 import request from "supertest";
 
-beforeEach(async () => {
+beforeAll(async () => {
 	await AppDataSource.initialize();
 });
 
 afterEach(async () => {
-	await AppDataSource.destroy();
+	//await AppDataSource.destroy();
 });
 
 it("First name of first user should be pwd", async () => {
