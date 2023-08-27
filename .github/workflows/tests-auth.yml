@@ -8,6 +8,12 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        env:
+            JWT_SECRET: ${{secrets.JWT_SECRET}}
+            PGHOST: ${{secrets.PGHOST}}
+            DB_USERNAME: ${{secrets.DB_USERNAME}}
+            DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+            DB_NAME: ${{secrets.DB_NAME}}
         steps:
             - uses: actions/checkout@v3
-            - run: cd auth_service && npm ci && npm test
+            - run: cd auth_service && npm install && npm test
