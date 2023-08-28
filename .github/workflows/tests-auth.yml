@@ -16,10 +16,10 @@ jobs:
 
         steps:
             - uses: actions/checkout@v3
-            - run: cd auth_service
-            - run: npm install
-            - run: npm run build --if-present
-            - run: npm test
+            - run: cd auth_service && npm install && npm test
+            #- run: npm install
+            #- run: npm run build --if-present
+            #- run: npm test
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
