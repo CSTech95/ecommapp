@@ -3,7 +3,7 @@ import { app } from "../../app";
 import { User } from "../../models/user";
 import request from "supertest";
 
-beforeAll(async () => {
+beforeEach(async () => {
 	await AppDataSource.initialize();
 });
 
