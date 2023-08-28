@@ -10,7 +10,7 @@ const AppDataSource = new DataSource({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME || "user",
 	entities: [User],
-	synchronize: true,
+	synchronize: false,
 	//dropSchema: true,
 	logging: false,
 });
