@@ -25,9 +25,9 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   #  cache: "npm"
-        env:
-            JWT_SECRET: ${{secrets.JWT_SECRET}}
-            PGHOST: ${{secrets.PGHOST}}
-            DB_USERNAME: ${{secrets.DB_USERNAME}}
-            DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-            DB_NAME: ${{secrets.DB_NAME}}
+env:
+    JWT_SECRET: ${{secrets.JWT_SECRET}}
+    PGHOST: ${{secrets.PGHOST}}
+    DB_USERNAME: ${{secrets.DB_USERNAME}}
+    DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+    DB_NAME: ${{secrets.DB_NAME}}
