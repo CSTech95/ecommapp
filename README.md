@@ -21,6 +21,8 @@ We're not logged in therefore we're not authorized to create an order
 The code to determine the current user is abstracted away in a custom made npm library. This allows for consistency when working within a team.
 <img width="1280" alt="Screenshot 2023-08-29 at 2 17 09 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/b182b646-d1de-4de5-a087-10ea8406bd1a">
 
+Here's creating a user. You must provide email in a correct format. Once a user has been created, the password is hashed in case the database gets compromised. Then a cookie will be returned from server indicating this user is logged in.
+![Screen Recording 2023-08-29 at 2 19 46 AM (1)](https://github.com/CSTech95/ecommapp/assets/16457234/5c4f094e-f467-42a9-a373-89334bcceda6)
 
 
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
@@ -29,7 +31,7 @@ PDF needs to be updated. Specifically on the database design & RabbitMQ Integrat
 ![high-level-ecommapp-design](https://github.com/CSTech95/ecommapp/assets/16457234/8ce94416-c1eb-474e-b314-7e2371d08e3b)
 
 
-Passwords are hashed in case the database gets compromised
+
 <img width="1920" alt="Screenshot 2023-06-21 at 10 13 43 PM" src="https://github.com/CSTech95/ecommapp/assets/16457234/fc8b8440-f654-4d3c-9be4-fb33282cbf2b">
 
 
