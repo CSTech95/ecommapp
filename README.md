@@ -38,6 +38,14 @@ The order is sent to RabbitMQ's ORDER_EXCHANGE. The ORDER_ECHANGE sends this ord
 <img width="1280" alt="image" src="https://github.com/CSTech95/ecommapp/assets/16457234/180ab86c-b0c2-47e8-9d52-61196e3c68e1">
 <img width="1280" alt="Screenshot 2023-08-29 at 3 21 22 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/db1176d4-60ac-4a36-bcdf-de9f8df96af1">
 
+Now John Doe, who has a userId of 3, is going to sign in & then purchase a Nintendo Wii and a BMX Bike.
+![Screen Recording 2023-08-29 at 3 27 41 AM (1)](https://github.com/CSTech95/ecommapp/assets/16457234/8050a3e4-152b-498d-a446-3da881d5f62a)
+
+Final Order Table
+![order_table_final](https://github.com/CSTech95/ecommapp/assets/16457234/b8c3f2d3-bea6-4981-bd4a-c22bb0179084)
+
+Final Shipment Table
+<img width="1280" alt="Screenshot 2023-08-29 at 3 59 06 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/42e18205-8319-43d3-8f2b-00ff242fe784">
 
 
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
