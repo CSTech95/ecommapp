@@ -15,6 +15,13 @@ Currently we have no users in the database and we're not logged in. Let's try to
 <img width="1280" alt="Screenshot 2023-08-29 at 2 07 57 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/e07cd14f-0414-4dae-94c3-b1355bd95ca1">
 <img width="1280" alt="Screenshot 2023-08-29 at 2 09 46 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/84d21d91-655a-4534-a4e4-f65d7f80f7bf">
 
+We're not logged in therefore we're not authorized to create an order
+![Screen Recording 2023-08-29 at 2 11 00 AM](https://github.com/CSTech95/ecommapp/assets/16457234/11f015fa-1d38-4fab-8146-150df52f8f78)
+
+The code to determine the current user is abstracted away in a custom made npm library. This allows for consistency when working within a team.
+<img width="1280" alt="Screenshot 2023-08-29 at 2 17 09 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/b182b646-d1de-4de5-a087-10ea8406bd1a">
+
+
 
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
 [EcommerceApp.drawio.pdf](https://github.com/CSTech95/ecommapp/files/11729696/EcommerceApp.drawio.pdf)
