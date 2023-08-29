@@ -11,6 +11,10 @@ After running this command an exchange "ORDER_EXCHANGE" & Queue "shipping_queue"
 <img width="1280" alt="order_exchange" src="https://github.com/CSTech95/ecommapp/assets/16457234/488ca36b-4253-4b27-9945-f3db382df348">
 <img width="1280" alt="shippingqueue" src="https://github.com/CSTech95/ecommapp/assets/16457234/79f2e07d-de78-4c13-a0c4-80661056358a">
 
+Currently we have no users in the database and we're not logged in. Let's try to make an order while in this state.
+<img width="1280" alt="Screenshot 2023-08-29 at 2 07 57 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/e07cd14f-0414-4dae-94c3-b1355bd95ca1">
+<img width="1280" alt="Screenshot 2023-08-29 at 2 09 46 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/84d21d91-655a-4534-a4e4-f65d7f80f7bf">
+
 
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
 [EcommerceApp.drawio.pdf](https://github.com/CSTech95/ecommapp/files/11729696/EcommerceApp.drawio.pdf)
