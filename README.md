@@ -31,6 +31,16 @@ Once signed up, we're logged in with a cookie. This cookie indicates the current
 Currently the "Order" & "Shipment" database are empty.
 ![Screen Recording 2023-08-29 at 2 46 34 AM (1)](https://github.com/CSTech95/ecommapp/assets/16457234/93d56593-9dbc-42c8-a506-d5fcd204daf6)
 
+We're currently logged in as Sally Mae & her userId is 4. She wants to order a Playstation 5 and a Mountain Bike. All she needs to do is pass in the list of products and the total fee will be calculated. (Entered totalFee of $5.99 in request body from an earlier test but it isn't needed. Total fee is calculated and returned in the response)
+![Screen Recording 2023-08-29 at 2 58 04 AM (1)](https://github.com/CSTech95/ecommapp/assets/16457234/409e2ca6-6986-40bb-9d46-548ca594b560)
+
+The order is sent to RabbitMQ's ORDER_EXCHANGE. The ORDER_ECHANGE sends this order to all queues connected to it. The shipping_queue is connected to this exchange and recieves the order. The shipping_service saves this information to its database automatically and prepares shipment.
+<img width="1280" alt="image" src="https://github.com/CSTech95/ecommapp/assets/16457234/180ab86c-b0c2-47e8-9d52-61196e3c68e1">
+<img width="1280" alt="Screenshot 2023-08-29 at 3 21 22 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/db1176d4-60ac-4a36-bcdf-de9f8df96af1">
+
+
+
+<img width="1280" alt="Screenshot 2023-08-29 at 3 17 26 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/61fbdf2d-c52e-4845-9884-db0cbd20a3d5">
 
 
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
