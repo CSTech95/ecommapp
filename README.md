@@ -1,4 +1,17 @@
 # ecommapp
+
+To run this app You'll need:
+- Docker
+- Docker-Compose
+
+Navigate to ./ecommapp directory and run docker-compose up --build
+![composeup00](https://github.com/CSTech95/ecommapp/assets/16457234/2f29719f-c30b-497f-a54e-ba4b1036d406)
+
+After running this command an exchange "ORDER_EXCHANGE" & Queue "shipping_queue" will automatically be created. You can view this with RabbitMQ management UI in the browser at http://localhost:15672/
+<img width="1280" alt="order_exchange" src="https://github.com/CSTech95/ecommapp/assets/16457234/488ca36b-4253-4b27-9945-f3db382df348">
+<img width="1280" alt="shippingqueue" src="https://github.com/CSTech95/ecommapp/assets/16457234/79f2e07d-de78-4c13-a0c4-80661056358a">
+
+
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
 [EcommerceApp.drawio.pdf](https://github.com/CSTech95/ecommapp/files/11729696/EcommerceApp.drawio.pdf)
 
