@@ -40,9 +40,6 @@ The order is sent to RabbitMQ's ORDER_EXCHANGE. The ORDER_ECHANGE sends this ord
 
 
 
-<img width="1280" alt="Screenshot 2023-08-29 at 3 17 26 AM" src="https://github.com/CSTech95/ecommapp/assets/16457234/61fbdf2d-c52e-4845-9884-db0cbd20a3d5">
-
-
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
 [EcommerceApp.drawio.pdf](https://github.com/CSTech95/ecommapp/files/11729696/EcommerceApp.drawio.pdf)
 
