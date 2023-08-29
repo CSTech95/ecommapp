@@ -25,6 +25,10 @@ Here's creating a user. You must provide email in a correct format. Once a user 
 ![Screen Recording 2023-08-29 at 2 19 46 AM (1)](https://github.com/CSTech95/ecommapp/assets/16457234/5c4f094e-f467-42a9-a373-89334bcceda6)
 
 
+Once signed up, we're logged in with a cookie. This cookie indicates the current user logged in for all microservices. We can sign out and sign in with a new user. Whoever is logged in will be the current user across our microservices. (Using regular integers for id value for demonstrational purposes)
+![Screen Recording 2023-08-29 at 2 31 11 AM (1)](https://github.com/CSTech95/ecommapp/assets/16457234/cf0c4c16-b4dc-4d58-b042-27b363882c4b)
+
+
 PDF needs to be updated. Specifically on the database design & RabbitMQ Integration. Omitting Foreign Keys and SQL Joins.
 [EcommerceApp.drawio.pdf](https://github.com/CSTech95/ecommapp/files/11729696/EcommerceApp.drawio.pdf)
 
