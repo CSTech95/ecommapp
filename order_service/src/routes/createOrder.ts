@@ -7,10 +7,10 @@ import { Product, sum, currentUser, requireAuth } from "@adecomm/common";
 const producer = new Producer();
 
 const router = Router();
-router.post("/api/order", currentUser, async (req: Request, res: Response) => {
+router.post("/api/order", currentUser, requireAuth, async (req: Request, res: Response) => {
 	const messageKey = process.env.ORDER_ROUTING_KEY || "order_key";
 	try {
-		const { products, userId } = req.body;
+		const { products } = req.body;
 		const order = new Order();
 
 		order.userId = req.currentUser!.id;
