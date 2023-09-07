@@ -3,13 +3,13 @@ import { app } from "../../app";
 import { User } from "../../models/user";
 import request from "supertest";
 
-beforeEach(async () => {
-	await AppDataSource.initialize();
-});
+//beforeEach(async () => {
+//	await AppDataSource.initialize();
+//});
 
-afterEach(async () => {
-	await AppDataSource.destroy();
-});
+//afterEach(async () => {
+//	await AppDataSource.destroy();
+//});
 
 it("Returns 200 on getUsers route", async () => {
 	const response = await request(app).get("/api/users/").expect(200);
