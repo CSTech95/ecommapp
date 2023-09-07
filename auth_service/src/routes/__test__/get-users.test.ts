@@ -18,6 +18,6 @@ it("Returns 200 on getUsers route", async () => {
 	//expect(response.body[0].fName).toEqual("pwd");
 });
 
-it("Returns correct summation of 1+1", async () => {
+it("Returns correct summation of 1+1", () => {
 	expect(1 + 1).toEqual(2);
 });
