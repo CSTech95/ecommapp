@@ -30,10 +30,6 @@ router.post("/api/users/signin", async (req: Request, res: Response) => {
 	}
 	let validatePassword = await isPassword(enteredPassword);
 	if (existingUser && validatePassword) {
-		//const isPasswordTrue = await bcrypt.compare(enteredPassword, existingUser.password!);
-		//const isPasswordTrue = await bcrypt.compare(enteredPassword, existingUser.password!);
-		//throw new BadRequestError("Invalid credentials");
-		//11
 		// Generate JWT
 		const userJwt = jwt.sign(
 			{
