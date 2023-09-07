@@ -2,10 +2,9 @@ name: Test-auth
 
 on:
     push:
-        branches:
-            - main
-        paths:
-            - "auth_service/**"
+        branches: main
+    pull_request:
+        branches: main
 
 jobs:
     # Label of the container job
@@ -43,7 +42,6 @@ jobs:
                   services: |
                       auth_service
                       postgres_db
-            - run: cd auth_service && npm install && npm test
               env:
                   JWT_SECRET: ${{secrets.JWT_SECRET}}
                   PGHOST: ${{secrets.PGHOST}}
@@ -51,3 +49,5 @@ jobs:
                   DB_PASSWORD: ${{secrets.DB_PASSWORD}}
                   DB_NAME: ${{secrets.DB_NAME}}
                   POSTGRES_PORT: 5432
+                  test-container: auth_service
+                  test-command: "npm test"
