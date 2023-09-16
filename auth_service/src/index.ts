@@ -1,8 +1,8 @@
 import "dotenv/config";
-import { app } from "./app.ts";
+import { app } from "./app";
 import "reflect-metadata";
-import { User } from "./models/user.ts";
-import AppDataSource from "../config/ormconfig.ts";
+import { User } from "./models/user";
+import AppDataSource from "../config/ormconfig";
 
 AppDataSource.initialize();
 
