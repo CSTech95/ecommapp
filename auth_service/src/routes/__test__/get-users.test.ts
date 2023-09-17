@@ -13,11 +13,11 @@ import request from "supertest";
 
 it("Returns 200 on getUsers route", async () => {
 	const response = await request(app).get("/api/users/").expect(200);
-	console.log(response.body);
+	//console.log(response.body);
 
 	//expect(response.body[0].fName).toEqual("pwd");
 });
 
-it("Returns correct summation of 1+1", () => {
-	expect(1 + 1).toEqual(2);
-});
+//it("Returns correct summation of 1+1", () => {
+//	expect(1 + 1).toEqual(2);
+//});
