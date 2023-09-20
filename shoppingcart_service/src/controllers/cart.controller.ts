@@ -14,6 +14,7 @@ export default class Cart {
 			res.send(error);
 		}
 	}
+
 	static async apiCreateCart(req: Request, res: Response, next: NextFunction) {
 		try {
 			const products = await req.body.products;
@@ -27,6 +28,21 @@ export default class Cart {
 
 			const createdCart = await cartService.createCart(products, userSessionId);
 			res.json(createdCart);
+		} catch (error) {
+			res.send(error);
+		}
+	}
+	static async apiUpdateUserCart(req: Request, res: Response, next: NextFunction) {
+		try {
+			if (!req.currentUser) {
+				throw new Error("Must be logged in");
+			}
+			const products = await req.body.products;
+			const userSessionId = await req.currentUser.id!;
+			//console.log(userSessionId);
+
+			const updatedCart = await cartService.updateUserCart(userSessionId, products);
+			res.json(updatedCart);
 		} catch (error) {
 			res.send(error);
 		}

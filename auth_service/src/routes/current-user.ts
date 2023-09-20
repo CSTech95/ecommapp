@@ -5,7 +5,8 @@ import { currentUser, requireAuth } from "@adecomm/common";
 const router = express.Router();
 
 router.get("/api/users/currentuser", currentUser, (req: Request, res: Response) => {
-	console.log(req.currentUser!.id);
+	console.log(req.currentUser);
+	//console.log(req.currentUser!.id);
 
 	res.send({ currentUser: req.currentUser || null });
 });
