@@ -1,6 +1,9 @@
+import { Product } from "./../types/Product.type";
 import express, { Request, Response } from "express";
 import { AppDataSource } from "../index";
 import { ShoppingCart } from "../models/shoppingcart";
+import { sum } from "@adecomm/common";
+import { CartType } from "../types/Cart.type";
 
 export class cartService {
 	constructor() {}
@@ -17,20 +20,22 @@ export class cartService {
 		}
 	}
 
-	static async createCart(products: any, userId: string) {
+	static async createCart(products: Product[], userId: string) {
 		//TODO:: Check to see if cart already exist
 		//TODO:: If cart exist say you already have a cart created
 		try {
 			const cart = new ShoppingCart();
 
-			const sum = products.reduce((acc: any, obj: any) => {
-				acc += parseInt(obj.price);
-				return acc;
-			}, 0);
+			//const sum = products.reduce((acc: any, obj: any) => {
+			//	acc += parseInt(obj.price);
+			//	return acc;
+			//}, 0);
+
+			const calculatedTotalFee = sum(products);
 
 			cart.userId = userId;
 			cart.products = products;
-			cart.totalFee = sum;
+			cart.totalFee = calculatedTotalFee;
 			cart.createdAt = Date.now();
 
 			const cartRepositoy = AppDataSource.getRepository(ShoppingCart);
@@ -40,7 +45,7 @@ export class cartService {
 			console.log(error);
 		}
 	}
-	static async updateUserCart(userSessionId: string, additionalProducts: any) {
+	static async updateUserCart(userSessionId: string, additionalProducts: Product[]) {
 		try {
 			const allCarts = await AppDataSource.getRepository(ShoppingCart);
 			const findCart = await allCarts.find({
@@ -53,14 +58,13 @@ export class cartService {
 
 			cart.products = [...additionalProducts];
 
-			await AppDataSource.getRepository(ShoppingCart).merge(cart, additionalProducts);
+			//const sum: number = cart.products.reduce((acc: any, obj: any) => {
+			//	acc += parseInt(obj.price);
+			//	return acc;
+			//}, 0);
+			const calculatedSum = sum(cart.products);
 
-			const sum: number = cart.products.reduce((acc: any, obj: any) => {
-				acc += parseInt(obj.price);
-				return acc;
-			}, 0);
-
-			cart!.totalFee = sum;
+			cart!.totalFee = calculatedSum;
 
 			const changedCart = await AppDataSource.getRepository(ShoppingCart).save(cart!);
 

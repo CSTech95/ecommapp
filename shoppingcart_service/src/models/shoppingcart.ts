@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Product } from "../types/Product.type";
 
 @Entity({ name: "shopping_cart" })
 export class ShoppingCart {
@@ -14,7 +15,7 @@ export class ShoppingCart {
 
 	@Column("jsonb")
 	//TODO Add interface for product value
-	products: string[] | undefined | string;
+	products: Product[] | undefined | string;
 
 	@Column({ type: "varchar" })
 	totalFee: number | undefined | string;

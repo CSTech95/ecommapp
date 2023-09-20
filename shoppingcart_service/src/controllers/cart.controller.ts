@@ -1,3 +1,4 @@
+import { Product } from "./../types/Product.type";
 import { NextFunction, Request, Response } from "express";
 import { cartService } from "../services/cart.service";
 
@@ -17,7 +18,7 @@ export default class Cart {
 
 	static async apiCreateCart(req: Request, res: Response, next: NextFunction) {
 		try {
-			const products = await req.body.products;
+			const products: Product[] = await req.body.products;
 			let userSessionId = "";
 			if (!req.currentUser) {
 				throw new Error("Must be logged in");
@@ -38,7 +39,7 @@ export default class Cart {
 				throw new Error("Must be logged in");
 			}
 			const userSessionId = await req.currentUser.id!;
-			const products = await req.body.products;
+			const products: Product[] = await req.body.products;
 			//console.log(userSessionId);
 
 			const updatedCart = await cartService.updateUserCart(userSessionId, products);
