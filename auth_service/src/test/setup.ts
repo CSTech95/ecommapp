@@ -6,11 +6,11 @@ declare global {
 	var signin: () => Promise<string[]>;
 }
 
-beforeEach(async () => {
+beforeAll(async () => {
 	await AppDataSource.initialize();
 });
 
-afterEach(async () => {
+afterAll(async () => {
 	await AppDataSource.destroy();
 });
 

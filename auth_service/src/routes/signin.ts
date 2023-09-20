@@ -13,7 +13,6 @@ const router = express.Router();
 //TODO :: Error Handling
 router.post("/api/users/signin", async (req: Request, res: Response) => {
 	const { email, password } = req.body;
-
 	const existingUser = await AppDataSource.getRepository(User).findOneBy({
 		email,
 	});
@@ -44,7 +43,7 @@ router.post("/api/users/signin", async (req: Request, res: Response) => {
 				},
 			},
 			//process.env.JWT_KEY!
-			process.env.JWT_SECRET!
+			process.env.JWT_SECRET! || "tinker"
 		);
 
 		req.session = {
