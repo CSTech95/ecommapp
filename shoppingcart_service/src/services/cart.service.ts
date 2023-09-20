@@ -16,9 +16,9 @@ export class cartService {
 			console.log("Could not fetch carts");
 		}
 	}
-    static async createCart(products: any, userId: string) {
-        TODO:: Check to see if cart already exist
-        TODO:: If cart exist say you already have a cart created
+	static async createCart(products: any, userId: string) {
+		//TODO:: Check to see if cart already exist
+		//TODO:: If cart exist say you already have a cart created
 		try {
 			const cart = new ShoppingCart();
 
