@@ -37,12 +37,24 @@ export default class Cart {
 			if (!req.currentUser) {
 				throw new Error("Must be logged in");
 			}
-			const products = await req.body.products;
 			const userSessionId = await req.currentUser.id!;
+			const products = await req.body.products;
 			//console.log(userSessionId);
 
 			const updatedCart = await cartService.updateUserCart(userSessionId, products);
 			res.json(updatedCart);
+		} catch (error) {
+			res.send(error);
+		}
+	}
+	static async apiGetUserCart(req: Request, res: Response, next: NextFunction) {
+		try {
+			if (!req.currentUser) {
+				throw new Error("Must be logged in");
+			}
+			const userSessionId = await req.currentUser.id!;
+			const userCart = await cartService.getUserCart(userSessionId);
+			res.json(userCart);
 		} catch (error) {
 			res.send(error);
 		}

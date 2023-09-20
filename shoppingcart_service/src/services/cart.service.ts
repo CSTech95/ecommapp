@@ -70,4 +70,18 @@ export class cartService {
 			console.log("Could not fetch carts");
 		}
 	}
+	static async getUserCart(userSessionId: string) {
+		try {
+			const cart = await AppDataSource.getRepository(ShoppingCart);
+			const userCart = await cart.find({
+				where: {
+					userId: userSessionId,
+				},
+			});
+			console.log(userCart);
+			return userCart;
+		} catch (error) {
+			console.log("Could not fetch your cart");
+		}
+	}
 }
