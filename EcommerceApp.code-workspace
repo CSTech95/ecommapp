@@ -1,0 +1,46 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "shoppingcart_service",
+			"path": "shoppingcart_service"
+		},
+		{
+			"name": "order_service",
+			"path": "order_service"
+		},
+		{
+			"name": "common",
+			"path": "common"
+		},
+		{
+			"name": "inventory_service",
+			"path": "inventory_service"
+		},
+		{
+			"name": "auth_service",
+			"path": "auth_service"
+		},
+		{
+			"name": "product_service",
+			"path": "product_service"
+		},
+		{
+			"name": "shipping_service",
+			"path": "shipping_service"
+		},
+		{
+			"name": "notification_service",
+			"path": "notification_service"
+		},
+		{
+			"name": "chat_service",
+			"path": "chat_service"
+		}
+	],
+	"settings": {
+		"jest.disabledWorkspaceFolders": ["EcommerceApp", "order_service", "common", "inventory_service", "shipping_service", "notification_service", "chat_service"]
+	}
+}
