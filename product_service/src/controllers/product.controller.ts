@@ -53,4 +53,15 @@ export default class ProductController {
 			res.send(error);
 		}
 	}
+	static async apiDeleteProductById(req: Request, res: Response, next: NextFunction) {
+		try {
+			const deletedProduct = await productService.deleteProductById(req.params.id);
+			if (!deletedProduct) {
+				res.status(404).json("Can't delete product");
+			}
+			res.json(deletedProduct);
+		} catch (error) {
+			res.send(error);
+		}
+	}
 }

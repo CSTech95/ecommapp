@@ -1,16 +1,9 @@
 import { Router, Request, Response } from "express";
 import { AppDataSource } from "../index";
 import { Product } from "../models/product";
+import ProductController from "../controllers/product.controller";
 const router = Router();
 
-router.delete("/api/products/:id", async (req: Request, res: Response) => {
-	const product = await AppDataSource.getRepository(Product).findOneBy({ id: req.params.id });
-	if (!product) {
-		res.sendStatus(204);
-	} else {
-		const results = await AppDataSource.getRepository(Product).delete(req.params.id);
-		return res.status(202).send(results);
-	}
-});
+router.delete("/api/products/:id", ProductController.apiDeleteProductById);
 
 export { router as deleteProductRouter };

@@ -93,4 +93,17 @@ export default class productService {
 			console.log(error);
 		}
 	}
+	static async deleteProductById(productId: string) {
+		try {
+			const product = await AppDataSource.getRepository(Product).findOneBy({ id: productId });
+			if (!product) {
+				return "Can't delete product";
+			} else {
+				const deletedProduct = await AppDataSource.getRepository(Product).delete(productId);
+				return deletedProduct;
+			}
+		} catch (error) {
+			console.log("Could not fetch all Products");
+		}
+	}
 }
