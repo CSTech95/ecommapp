@@ -1,9 +1,7 @@
-import express, { Request, Response } from "express";
-import { AppDataSource } from "../index";
-import { ShoppingCart } from "../models/shoppingcart";
+import { Router } from "express";
 import CartController from "../controllers/cart.controller";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/api/carts", CartController.apiGetAllCarts);
 

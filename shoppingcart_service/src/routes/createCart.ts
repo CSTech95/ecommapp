@@ -1,9 +1,6 @@
-import { AppDataSource } from "../index";
-import { Router, Request, Response } from "express";
-
-import { ShoppingCart } from "../models/shoppingcart";
-import { currentUser } from "@adecomm/common";
+import { Router } from "express";
 import CartController from "../controllers/cart.controller";
+import { currentUser } from "@adecomm/common";
 
 const router = Router();
 router.post("/api/cart", currentUser, CartController.apiCreateCart);

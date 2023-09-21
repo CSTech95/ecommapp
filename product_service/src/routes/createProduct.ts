@@ -1,6 +1,4 @@
-import { AppDataSource } from "./../index";
 import { Router } from "express";
-import { Product } from "../models/product";
 import ProductController from "../controllers/product.controller";
 
 const router = Router();

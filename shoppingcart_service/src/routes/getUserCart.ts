@@ -1,10 +1,8 @@
-import { ShoppingCart } from "../models/shoppingcart";
-import express, { Router, Request, Response } from "express";
-import { AppDataSource } from "../index";
+import { Router } from "express";
 import { currentUser, requireAuth } from "@adecomm/common";
 import CartController from "../controllers/cart.controller";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/api/cart/user", currentUser, requireAuth, CartController.apiGetUserCart);
 
