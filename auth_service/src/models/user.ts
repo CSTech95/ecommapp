@@ -18,7 +18,7 @@ export class User {
 	email: string | undefined;
 
 	@Column({ type: "varchar", nullable: false })
-	password: string | undefined;
+	password: string = "";
 
 	// Column with JSON data type
 	@Column("simple-json", { nullable: true })

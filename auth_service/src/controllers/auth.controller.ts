@@ -14,7 +14,7 @@ export default class AuthController {
 			res.send(error);
 		}
 	}
-	static async apiSignUp(req: Request, res: Response, next: NextFunction) {
+	static async apiSignUpUser(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { fName, lName, email, password, otherInfo } = req.body;
 			const hashedPassword = await bcrypt.hash(password, 10);
@@ -38,6 +38,36 @@ export default class AuthController {
 					jwt: userJwt,
 				};
 				res.json(signUpUser);
+			}
+		} catch (error) {
+			res.send(error);
+		}
+	}
+	static async apiSignInUser(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { email, password } = req.body;
+			const signInUser = await AuthService.signIn(email, password);
+			if (signInUser) {
+				const userJwt = jwt.sign(
+					{
+						email: signInUser.email,
+						fName: signInUser.fName,
+						lName: signInUser.lName,
+						otherInfo: {
+							address: signInUser.otherInfo.address,
+							state: signInUser.otherInfo.state,
+							zip: signInUser.otherInfo.zip,
+						},
+					},
+					//process.env.JWT_KEY!
+					process.env.JWT_SECRET! || "tinker"
+				);
+				req.session = {
+					jwt: userJwt,
+				};
+				res.json(signInUser);
+			} else {
+				res.status(404).send("User Not Found");
 			}
 		} catch (error) {
 			res.send(error);

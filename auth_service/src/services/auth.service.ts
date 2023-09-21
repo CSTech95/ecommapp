@@ -2,21 +2,18 @@ import AppDataSource from "../../config/ormconfig";
 import { validate } from "class-validator";
 import { User } from "../models/user";
 import bcrypt from "bcrypt";
+import { isPassword } from "../utils/ispassword";
 
 export default class AuthService {
 	constructor() {}
 	static async signUp(fName: string, lName: string, email: string, hashedPassword: string, otherInfo?: any) {
 		try {
-			//const userRepository = AppDataSource.getRepository(User);
-			//const allProducts = await userRepository.find();
-			//const { fName, lName, email, password, otherInfo } = req.body;
 			const existingUser = await AppDataSource.getRepository(User).findOneBy({ email });
 
 			if (existingUser) {
 				return "User Exists"; // Fix this
 			}
 
-			//const hashedPassword = await bcrypt.hash(password, 10);
 			const user = new User();
 
 			user.fName = fName;
@@ -28,7 +25,6 @@ export default class AuthService {
 				state: otherInfo.state,
 				zip: otherInfo.zip,
 				createdAt: new Date(),
-				//createdAt: new Date().toLocaleString(),
 			};
 
 			const errors = await validate(user);
@@ -40,11 +36,24 @@ export default class AuthService {
 			await userRepository.save(user);
 
 			return user;
-
-			//console.log("All Products ", allProducts);
-			//return allProducts;
 		} catch (error) {
 			console.log("Could not register user");
+		}
+	}
+	//TODO:: SignIn Service
+	static async signIn(email: string, userEnteredPassword: string) {
+		try {
+			const existingUser: User | null = await AppDataSource.getRepository(User).findOneBy({ email });
+
+			const validatePassword = await isPassword(userEnteredPassword, existingUser!.password);
+
+			if (existingUser && validatePassword) {
+				return existingUser;
+			}
+
+			return existingUser ? existingUser : false;
+		} catch (error) {
+			console.log("Could not sign in user");
 		}
 	}
 }
