@@ -1,13 +1,9 @@
-import express, { Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import { Router } from "express";
+
 import { currentUser, requireAuth } from "@adecomm/common";
+import AuthController from "../controllers/auth.controller";
 
-const router = express.Router();
+const router = Router();
 
-router.get("/api/users/currentuser", currentUser, (req: Request, res: Response) => {
-	console.log(req.currentUser);
-	//console.log(req.currentUser!.id);
-
-	res.send({ currentUser: req.currentUser || null });
-});
+router.get("/api/users/currentuser", currentUser, AuthController.apiGetCurrentUser);
 export { router as currentUserRouter };
