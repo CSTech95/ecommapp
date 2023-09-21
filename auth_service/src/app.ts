@@ -8,7 +8,7 @@ import { currentUserRouter } from "./routes/current-user";
 import { signInRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
-import { getAllUsersRouter } from "./routes/get-users";
+import { getAllUsersRouter } from "./routes/getAllUsers";
 const app = express();
 
 app.set("trust-proxy", true);

@@ -6,6 +6,7 @@ import { isPassword } from "../utils/ispassword";
 
 export default class AuthService {
 	constructor() {}
+
 	static async signUp(fName: string, lName: string, email: string, hashedPassword: string, otherInfo?: any) {
 		try {
 			const existingUser = await AppDataSource.getRepository(User).findOneBy({ email });
@@ -40,6 +41,7 @@ export default class AuthService {
 			console.log("Could not register user");
 		}
 	}
+
 	//TODO:: SignIn Service
 	static async signIn(email: string, userEnteredPassword: string) {
 		try {
@@ -54,6 +56,18 @@ export default class AuthService {
 			return existingUser ? existingUser : false;
 		} catch (error) {
 			console.log("Could not sign in user");
+		}
+	}
+	static async getAllUsers() {
+		try {
+			const userRepository = await AppDataSource.getRepository(User);
+			const users = await userRepository.find();
+			if (!users) {
+				return [];
+			}
+			return users;
+		} catch (error) {
+			console.log("Could not retrieve users");
 		}
 	}
 }

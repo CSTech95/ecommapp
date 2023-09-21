@@ -4,6 +4,17 @@ import jwt from "jsonwebtoken";
 import AuthService from "../services/auth.service";
 export default class AuthController {
 	constructor() {}
+	static async apiGetAllUsers(req: Request, res: Response, next: NextFunction) {
+		try {
+			const users = await AuthService.getAllUsers();
+			if (!users) {
+				res.status(400).json([]);
+			}
+			res.send(users);
+		} catch (error) {
+			res.send(error);
+		}
+	}
 	static async apiGetCurrentUser(req: Request, res: Response, next: NextFunction) {
 		try {
 			console.log(req.currentUser);

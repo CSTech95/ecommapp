@@ -6,4 +6,5 @@ import AuthController from "../controllers/auth.controller";
 const router = Router();
 
 router.get("/api/users/currentuser", currentUser, AuthController.apiGetCurrentUser);
+
 export { router as currentUserRouter };
