@@ -1,12 +1,12 @@
 import { Product } from "./../types/Product.type";
 import { NextFunction, Request, Response } from "express";
-import { cartService } from "../services/cart.service";
+import CartService from "../services/cart.service";
 
-export default class Cart {
+export default class CartController {
 	constructor() {}
 	static async apiGetAllCarts(req: Request, res: Response, next: NextFunction) {
 		try {
-			const cart = await cartService.getAllCarts();
+			const cart = await CartService.getAllCarts();
 			if (!cart) {
 				res.status(404).json("Cart Not Found");
 			}
@@ -27,7 +27,7 @@ export default class Cart {
 			}
 			const data = req.body;
 
-			const createdCart = await cartService.createCart(products, userSessionId);
+			const createdCart = await CartService.createCart(products, userSessionId);
 			res.json(createdCart);
 		} catch (error) {
 			res.send(error);
@@ -42,7 +42,7 @@ export default class Cart {
 			const products: Product[] = await req.body.products;
 			//console.log(userSessionId);
 
-			const updatedCart = await cartService.updateUserCart(userSessionId, products);
+			const updatedCart = await CartService.updateUserCart(userSessionId, products);
 			res.json(updatedCart);
 		} catch (error) {
 			res.send(error);
@@ -54,7 +54,7 @@ export default class Cart {
 				throw new Error("Must be logged in");
 			}
 			const userSessionId = await req.currentUser.id!;
-			const userCart = await cartService.getUserCart(userSessionId);
+			const userCart = await CartService.getUserCart(userSessionId);
 			res.json(userCart);
 		} catch (error) {
 			res.send(error);

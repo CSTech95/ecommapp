@@ -5,7 +5,7 @@ import { ShoppingCart } from "../models/shoppingcart";
 import { sum } from "@adecomm/common";
 import { CartType } from "../types/Cart.type";
 
-export class cartService {
+export default class CartService {
 	constructor() {}
 
 	static async getAllCarts() {
@@ -25,11 +25,6 @@ export class cartService {
 		//TODO:: If cart exist say you already have a cart created
 		try {
 			const cart = new ShoppingCart();
-
-			//const sum = products.reduce((acc: any, obj: any) => {
-			//	acc += parseInt(obj.price);
-			//	return acc;
-			//}, 0);
 
 			const calculatedTotalFee = sum(products);
 
