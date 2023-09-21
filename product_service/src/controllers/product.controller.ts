@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { AppDataSource } from "../index";
 import { Product } from "../models/product";
 import productService from "../service/product.service";
 

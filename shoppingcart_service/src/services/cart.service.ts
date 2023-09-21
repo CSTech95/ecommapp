@@ -1,9 +1,7 @@
 import { Product } from "./../types/Product.type";
-import express, { Request, Response } from "express";
 import { AppDataSource } from "../index";
 import { ShoppingCart } from "../models/shoppingcart";
 import { sum } from "@adecomm/common";
-import { CartType } from "../types/Cart.type";
 
 export default class CartService {
 	constructor() {}
@@ -53,10 +51,6 @@ export default class CartService {
 
 			cart.products = [...additionalProducts];
 
-			//const sum: number = cart.products.reduce((acc: any, obj: any) => {
-			//	acc += parseInt(obj.price);
-			//	return acc;
-			//}, 0);
 			const calculatedSum = sum(cart.products);
 
 			cart!.totalFee = calculatedSum;
