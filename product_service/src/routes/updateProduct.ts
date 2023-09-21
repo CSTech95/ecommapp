@@ -1,17 +1,10 @@
 import express, { Router, Request, Response } from "express";
 import { AppDataSource } from "../index";
 import { Product } from "../models/product";
+import ProductController from "../controllers/product.controller";
 //Product;
 const router = express.Router();
 
-router.put("/api/product/:id", async (req: Request, res: Response) => {
-	const product = await AppDataSource.getRepository(Product).findOneBy({ id: req.params.id });
-	if (!product) {
-		res.sendStatus(204);
-	}
-	AppDataSource.getRepository(Product).merge(product!, req.body);
-	const results = await AppDataSource.getRepository(Product).save(product!);
-	return res.status(202).send(results);
-});
+router.put("/api/product/:id", ProductController.apiUpdateProductById);
 
 export { router as updateProductRouter };

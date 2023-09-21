@@ -49,6 +49,19 @@ export default class productService {
 			console.log("Could not fetch all Products");
 		}
 	}
+	static async updateProductById(productId: string, updatedProduct: Product) {
+		try {
+			const product = await AppDataSource.getRepository(Product).findOneBy({ id: productId });
+			if (!product) {
+				return "can't update Product";
+			}
+			AppDataSource.getRepository(Product).merge(product!, updatedProduct);
+			const changedProduct = await AppDataSource.getRepository(Product).save(product!);
+			return changedProduct;
+		} catch (error) {
+			console.log("Could not fetch all Products");
+		}
+	}
 	static async createProduct(
 		title: string,
 		description: string,

@@ -28,6 +28,19 @@ export default class ProductController {
 			res.send(error);
 		}
 	}
+	static async apiUpdateProductById(req: Request, res: Response, next: NextFunction) {
+		try {
+			const productId: string = req.params.id;
+			const updatedProduct: Product = req.body;
+			const returnedProduct = await productService.updateProductById(productId, updatedProduct);
+			if (!returnedProduct) {
+				res.status(404).json("Can't get products");
+			}
+			res.json(returnedProduct);
+		} catch (error) {
+			res.send(error);
+		}
+	}
 	static async apiCreateProduct(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { title, description, price, discountedPercentage, rating, stock, brand, category, thumbnail, images } = req.body;
