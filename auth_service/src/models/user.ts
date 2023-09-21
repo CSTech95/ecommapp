@@ -23,7 +23,7 @@ export class User {
 	// Column with JSON data type
 	@Column("simple-json", { nullable: true })
 	otherInfo!: {
-		createdAt: number | undefined | string;
+		createdAt: Date | number | undefined | string;
 
 		address: string | undefined | any;
 

@@ -16,9 +16,12 @@ router.post("/api/users/signin", async (req: Request, res: Response) => {
 	const existingUser = await AppDataSource.getRepository(User).findOneBy({
 		email,
 	});
-	let enteredPassword = await password;
+	if (!existingUser) {
+		res.status(404).send("User Does Not Exist");
+	}
+	let enteredPassword: string = await password;
 
-	async function isPassword(password: Buffer) {
+	async function isPassword(enteredPassword: string) {
 		const match = await bcrypt.compare(enteredPassword, existingUser!.password!);
 
 		if (match) {
