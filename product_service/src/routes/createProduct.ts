@@ -1,5 +1,5 @@
 import { AppDataSource } from "./../index";
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { Product } from "../models/product";
 import ProductController from "../controllers/product.controller";
 

@@ -1,9 +1,6 @@
-import express, { Router, Request, Response } from "express";
-import { AppDataSource } from "../index";
-import { Product } from "../models/product";
+import { Router } from "express";
 import ProductController from "../controllers/product.controller";
-//Product;
-const router = express.Router();
+const router = Router();
 
 router.put("/api/product/:id", ProductController.apiUpdateProductById);
 
